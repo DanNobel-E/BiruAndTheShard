@@ -16,18 +16,22 @@ public class Biru_Movements : MonoBehaviour
     public bool onGround => CheckIfGrounded();
     public bool canJump => Input.GetKeyDown(KeyCode.UpArrow) && onGround;
 
-   
-
     public float RaycastLenght;
     public Vector2 Raycastoffset;
+
+
 
     [Header("MovementVariables")]
     public float moveSpeed = 5f;
 
     [Header("JumpVariables")]
-    public float jumpVelocity = 5f;
-    public float longJumpScale = 3f;
-    public float lowJumpScale = 2f;
+    [Range(0, 10)]
+    public float jumpForce = 5f;
+    [Range(0,10)]
+    public float fallGravityScale = 3f;
+    [Range(0, 10)]
+    public float ascendGravityScale = 3f;
+
 
 
     [Header("GUIVariables")]
@@ -57,12 +61,12 @@ public class Biru_Movements : MonoBehaviour
 
     private void ControlGravity()
     {
-        if (rb.velocity.y < 0) rb.gravityScale = longJumpScale;
-        else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.UpArrow)) rb.gravityScale = lowJumpScale;
+        if (rb.velocity.y > 0) rb.gravityScale = ascendGravityScale;
+        else if (rb.velocity.y < 0) rb.gravityScale = fallGravityScale;
         else rb.gravityScale = 1;
     }
 
-    private Vector2 GetInput()
+    private Vector2 GetInput() //refactor
     {
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
@@ -77,10 +81,10 @@ public class Biru_Movements : MonoBehaviour
 
     private void JumpCharacter()
     {
-        rb.velocity += Vector2.up * jumpVelocity;
+        rb.velocity += Vector2.up * jumpForce;
     }
 
-    private bool CheckIfGrounded()
+    public bool CheckIfGrounded()
     {
        return Physics2D.Raycast((Vector2)transform.position+Raycastoffset, Vector2.down, RaycastLenght, GroundLayer);
     }
