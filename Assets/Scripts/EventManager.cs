@@ -8,10 +8,13 @@ using UnityEngine.Events;
 public class EventManager : MonoBehaviour
 {
     public static UnityEvent OnLevelChange;
+    public static UnityEvent OnButtonPressed;
 
     void Awake()
     {
         OnLevelChange = new UnityEvent();
+        OnButtonPressed = new UnityEvent();
+
     }
 
     
