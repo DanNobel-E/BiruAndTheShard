@@ -10,7 +10,7 @@ public class ButtonLogic : MonoBehaviour
     
     public int buttonIndex = 0; //Use that to differentiate between buttons
 
-    private void Awake()
+    private void Start()
     {
         EventManager.OnButtonPressed.AddListener(ButtonEventDebug);
     }
