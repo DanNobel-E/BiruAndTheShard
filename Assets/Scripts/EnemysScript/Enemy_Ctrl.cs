@@ -15,6 +15,7 @@ public class Enemy_Ctrl : MonoBehaviour
     Rigidbody2D rigidBody;
     SpriteRenderer spriteRenderer;
     Vector3 distToPlayer;
+    Vector3 forward;
     //Vector3 velocity;
     float fraction = 0;
     //float originalSpeed;
@@ -23,7 +24,6 @@ public class Enemy_Ctrl : MonoBehaviour
     float counter = 0;
     int timeToGo = 3;       // timer dopo quanto tempo i nemici cominciano a muoversi (problema di delay nel caricamento)
 
-    // Start is called before the first frame update
     void Start()
     {
         rigidBody = transform.GetComponent<Rigidbody2D>();
@@ -37,7 +37,6 @@ public class Enemy_Ctrl : MonoBehaviour
     {
         CheckDistanceToPlayer();
         MovementEnemy();
-        //rigidBody.velocity = transform.right * Speed * Time.deltaTime;
     }
     void CheckDistanceToPlayer()            // metodo per gestire
     {
@@ -46,55 +45,21 @@ public class Enemy_Ctrl : MonoBehaviour
     }
     void MovementEnemy()
     {
-        //counter += Time.deltaTime;
-        //if (counter >= timeToGo)       // usato counter 
-        //{
-        // USATO INZIALMENTE COME LERP-PINGPONG, MA DA CAMBIARE USANDO RAYCAST
-        //fraction += Time.deltaTime;
-        //if (fraction > LerpTime)        // quando la fraction raggiunge il tempo publico LerpTime inverte la speed
-        //{
-        //    fraction = 0;
-        //    Speed = -Speed;
-        //    spriteRenderer.flipX = !spriteRenderer.flipX;
-        //}
-
-        //Vector2 dirRay = new Vector2(.5f, 0);
-        ////RaycastHit2D ray = Physics2D.Raycast(dirRay, transform.position);
-        //RaycastHit2D ray = Physics2D.Raycast(transform.position, transform.TransformDirection(transform.position.x, 0, 0));
-        RaycastHit2D ray = Physics2D.Raycast(transform.TransformDirection(transform.position.x, 0, 0), transform.position); //con questo funziona ma ha problemi
-        ////Debug.DrawRay(transform.position, transform.TransformDirection(transform.position.x, 0, 0), Color.red);
-        Debug.DrawRay(transform.TransformDirection(transform.position.x, 0, 0), transform.position, Color.red);
-        ////Debug.DrawRay(transform.position, transform.right, Color.red);
-
+        forward = (transform.right * Speed).normalized;
+        RaycastHit2D ray = Physics2D.Raycast(transform.position + forward * 0.5f, forward, .1f); // aggiunto * 0.5f perchè altrimenti partiva da troppo lontano
+                                                                                                 // se parte da troppo vicino collide sempre con il player
 
         if (ray.collider != null)
         {
-            //Vector2 distFromCollider = ray.transform.position - transform.position;
-            float distFromCollider = ray.point.x - transform.position.x;
             Debug.Log(ray.collider.gameObject.tag);
             if (ray.collider.CompareTag("ColumnTag") /*&& distFromCollider.x <= .5f*/)
             {
-                if (distFromCollider <= 1)
-                {
-                    Speed *= -1;
-                    spriteRenderer.flipX = !spriteRenderer.flipX;
-                    Debug.Log("asjdnajdfahjf");
-                }
-
+                Speed *= -1;
+                spriteRenderer.flipX = !spriteRenderer.flipX;
+                Debug.Log("asjdnajdfahjf");
             }
-
         }
         rigidBody.velocity = transform.right * Speed * Time.deltaTime;//lasciando il deltaTime devo aumentare molto la speed, ma togliendo il deltaTime non è piuà frame dependent
                                                                       // Debug.Log("ho colliso con: " + ray.collider.tag);
-                                                                      //}
     }
-    //public void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.collider.gameObject.tag == "ColumnTag")
-    //    {
-    //        Debug.Log("ciao");
-    //        Speed *= -1;
-    //        spriteRenderer.flipX = !spriteRenderer.flipX;
-    //    }
-    //}
 }
