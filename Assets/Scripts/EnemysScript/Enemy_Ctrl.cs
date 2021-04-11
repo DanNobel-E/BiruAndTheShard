@@ -14,10 +14,10 @@ public class Enemy_Ctrl : MonoBehaviour
     Rigidbody2D rigidBody;
     SpriteRenderer spriteRenderer;
     Vector3 distToPlayer;
-    Vector3 velocity;
-    Vector2 startLerpPos, endLerpPos;       // startLerpPos e endLerpPos riferimento per inizio e fine del lerp dell enemy
+    //Vector3 velocity;
+    //Vector2 startLerpPos, endLerpPos;       // startLerpPos e endLerpPos riferimento per inizio e fine del lerp dell enemy
     float fraction = 0;
-    float originalSpeed;
+    //float originalSpeed;
     float distLenght;
     bool attack;
     float counter = 0;
@@ -48,14 +48,17 @@ public class Enemy_Ctrl : MonoBehaviour
         counter += Time.deltaTime;
         if (counter >= timeToGo)       // usato counter 
         {
-            fraction += Time.deltaTime;
+            // USATO INZIALMENTE COME LERP-PINGPONG, MA DA CAMBIARE USANDO RAYCAST
+            //fraction += Time.deltaTime;
+            //if (fraction > LerpTime)        // quando la fraction raggiunge il tempo publico LerpTime inverte la speed
+            //{
+            //    fraction = 0;
+            //    Speed = -Speed;
+            //    spriteRenderer.flipX = !spriteRenderer.flipX;
+            //}
 
-            if (fraction > LerpTime)        // quando la fraction raggiunge il tempo publico LerpTime inverte la speed
-            {
-                fraction = 0;
-                Speed = -Speed;
-                spriteRenderer.flipX = !spriteRenderer.flipX;
-            }
+
+
             rigidBody.velocity = transform.right * Speed * Time.deltaTime;//lasciando il deltaTime devo aumentare molto la speed, ma togliendo il deltaTime non è piuà frame dependent
 
             //Debug.Log(fraction);
