@@ -508,21 +508,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2119162002411902628, guid: 4205b562b51e38848a47ec3128a0298e, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: 5abea7780e4a4c64b95be7de7b99c48d, type: 2}
-    - target: {fileID: 2119162002411902628, guid: 4205b562b51e38848a47ec3128a0298e, type: 3}
-      propertyPath: m_Simulated
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2119162002411902629, guid: 4205b562b51e38848a47ec3128a0298e, type: 3}
       propertyPath: m_Name
       value: Biru
-      objectReference: {fileID: 0}
-    - target: {fileID: 2119162002411902629, guid: 4205b562b51e38848a47ec3128a0298e, type: 3}
-      propertyPath: m_TagString
-      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2119162002411902681, guid: 4205b562b51e38848a47ec3128a0298e, type: 3}
       propertyPath: m_RootOrder
@@ -567,18 +555,6 @@ PrefabInstance:
     - target: {fileID: 2119162002411902681, guid: 4205b562b51e38848a47ec3128a0298e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2119162002411902683, guid: 4205b562b51e38848a47ec3128a0298e, type: 3}
-      propertyPath: alive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2119162002411902683, guid: 4205b562b51e38848a47ec3128a0298e, type: 3}
-      propertyPath: oneTime
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2119162002411902683, guid: 4205b562b51e38848a47ec3128a0298e, type: 3}
-      propertyPath: deathAnimSpeed
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4205b562b51e38848a47ec3128a0298e, type: 3}
