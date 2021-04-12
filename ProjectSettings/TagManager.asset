@@ -8,6 +8,8 @@ TagManager:
   - ColumnTag
   - Gem
   - Border
+  - Door
+  - Slot
   layers:
   - Default
   - TransparentFX
@@ -44,4 +46,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 682615107
+    locked: 0
+  - name: Middleground
+    uniqueID: 592580397
+    locked: 0
+  - name: Playgorund
+    uniqueID: 871601585
+    locked: 0
+  - name: Foreground
+    uniqueID: 1068572271
+    locked: 0
+  - name: UI
+    uniqueID: 3832342953
     locked: 0

@@ -73,8 +73,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 871601585
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -4099418257374492983, guid: 6d83b8c6758cc7d4b8f8030a7adce65b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -145,7 +145,7 @@ MonoBehaviour:
   deathAnimSpeed: 0
   alive: 1
   oneTime: 1
-  RaycastLenght: 0.7
+  RaycastLenght: 0.75
   Raycastoffset: {x: 0, y: -0.3}
   moveSpeed: 5
   jumpForce: 4.5

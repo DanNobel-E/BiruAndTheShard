@@ -213,7 +213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 240840998}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.75, y: 11.75, z: -10}
+  m_LocalPosition: {x: 22.75, y: 12, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1954986755}
@@ -370,13 +370,15 @@ MonoBehaviour:
   IronColor: {r: 0, g: 1, b: 1, a: 1}
   EnemyColor: {r: 1, g: 0, b: 0, a: 1}
   BorderColor: {r: 0, g: 0, b: 0, a: 1}
+  DoorColor: {r: 1, g: 0, b: 1, a: 1}
   TilePrefab:
   - {fileID: 2119162002411902629, guid: 4205b562b51e38848a47ec3128a0298e, type: 3}
-  - {fileID: 9082022156954155278, guid: 8cb7fff7da2949148b58ae0678466237, type: 3}
+  - {fileID: 6717770747848882197, guid: 7e0bc35d48c7e554cb40e2e6ce4af875, type: 3}
   - {fileID: 8008505951323170845, guid: 46c31f0a7255acf4e8a05fa399e90f42, type: 3}
   - {fileID: 8008505951323170845, guid: 46c31f0a7255acf4e8a05fa399e90f42, type: 3}
   - {fileID: 6964353141575928539, guid: feed4724e334e9e4da55b6c8a4854d97, type: 3}
   - {fileID: 6295558277652975931, guid: d8b75df20ddfed24181cc6484d085667, type: 3}
+  - {fileID: 9133215724563705016, guid: 3a116622edfdadf4d872ec933b7ae23c, type: 3}
 --- !u!4 &1214341135
 Transform:
   m_ObjectHideFlags: 0
