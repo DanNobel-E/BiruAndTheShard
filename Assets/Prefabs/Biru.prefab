@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2119162002411902680}
   m_Layer: 0
   m_Name: Biru
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,6 +142,9 @@ MonoBehaviour:
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
+  deathAnimSpeed: 0
+  alive: 1
+  oneTime: 1
   RaycastLenght: 0.3
   Raycastoffset: {x: 0, y: -0.3}
   moveSpeed: 5
@@ -164,7 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a34e1ea9487528c4bbbff3e6ad723187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 
+  currentState: 0
+  BiruDead: 0
 --- !u!70 &2119162002411902680
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
