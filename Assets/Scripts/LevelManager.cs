@@ -11,16 +11,29 @@ public class LevelManager : MonoBehaviour
     public Transform Grid;
     public int CurrentLevel=1;
     public TileColorMgr TileMgr;
+    bool playerLocated;
 
     // Start is called before the first frame update
     void Start()
     {
         EventManager.OnLevelChange.AddListener(OnLevelChange);
-        GenerateLevel(LevelTextures[CurrentLevel - 1]);
+
+        for (int i = 0; i < LevelTextures.Length; i++)
+        {
+            GenerateLevel(LevelTextures[i], i);
+
+        }
+      
     }
 
-    public void GenerateLevel(Texture2D t)
+    public void GenerateLevel(Texture2D t, int index)
     {
+        GameObject child = new GameObject();
+        child.transform.position = Grid.position;
+        child.transform.SetParent(Grid);
+        child.name = $"Level_{index + 1}";
+
+
         for (int x = 0; x < t.width; x++)
         {
             for (int y = 0; y < t.height; y++)
@@ -29,37 +42,74 @@ public class LevelManager : MonoBehaviour
 
                 if (TileColorMgr.ColorsDictionary.ContainsKey(tileColor))
                 {
-                    GenerateTile(TileColorMgr.ColorsDictionary[tileColor],x,y);
+                    GenerateTile(TileColorMgr.ColorsDictionary[tileColor],x,y,child.transform);
 
                 }
 
             }
         }
+
+        if (index + 1 != CurrentLevel)
+            child.SetActive(false);
     }
 
-    private void GenerateTile(TileType type, int x,int y)
+    private void GenerateTile(TileType type, int x,int y, Transform child)
     {
         GameObject tile = TileColorMgr.TilesDictionary[type];
 
         if (tile != null)
         {
-            Vector3 pos = new Vector3(x + 0.5f, y + 0.5f, 0);
-            Instantiate(tile, pos, Quaternion.identity, Grid);
+            switch (type)
+            {
+                case TileType.Player:
+                    if (!playerLocated)
+                    {
+                        Vector3 pPos = new Vector3(x + 0.5f, y + 0.5f, 0);
+                        Instantiate(tile, pPos, Quaternion.identity, child);
+                        playerLocated = true;
+                    }
+                    break;
+                case TileType.Enemy:
+                    break;
+                default:
+                    Vector3 pos = new Vector3(x + 0.25f, y + 0.25f, 0);
+                    Instantiate(tile, pos, Quaternion.identity, child);
+                    break;
+            }
+
+            tile.SetActive(true);
+
         }
     }
 
-    public void OnLevelChange()
+    public void OnLevelChange(int index)
     {
-        CurrentLevel++;
-        ResetGrid();
-        GenerateLevel(LevelTextures[CurrentLevel - 1]);
+        ResetLevel();
+        ChangeLevel(index);
     }
 
-    private void ResetGrid()
+    private void EraseLevel()
     {
         for (int i = 0; i < Grid.childCount; i++)
         {
             Destroy(Grid.GetChild(i));
         }
+    }
+
+
+    private void ChangeLevel(int index)
+    {
+        
+        Transform nextLevel = Grid.GetChild(index - 1);
+
+        nextLevel.gameObject.SetActive(true);
+    }
+    private void ResetLevel()
+    {
+        Transform level = Grid.GetChild(CurrentLevel - 1);
+
+        level.gameObject.SetActive(false);
+
+
     }
 }
