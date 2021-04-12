@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TileType { Player, Gem, Stone, Iron, Enemy, Border, Last}
+public enum TileType { Player, Gem, Stone, Iron, Enemy, Border, Door, Last}
 public class LevelManager : MonoBehaviour
 {
 
@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour
     public int CurrentLevel=1;
     public TileColorMgr TileMgr;
     bool playerLocated;
+    bool doorLocated;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +52,9 @@ public class LevelManager : MonoBehaviour
 
         if (index + 1 != CurrentLevel)
             child.SetActive(false);
+
+        playerLocated = false;
+        doorLocated = false;
     }
 
     private void GenerateTile(TileType type, int x,int y, Transform child)
@@ -69,10 +73,23 @@ public class LevelManager : MonoBehaviour
                         playerLocated = true;
                     }
                     break;
-                case TileType.Enemy:
+                case TileType.Door:
+                    if (!doorLocated)
+                    {
+                        Vector3 dPos = new Vector3(x + 0.5f, y+1, 0);
+                        GameObject door= Instantiate(tile, dPos, Quaternion.identity, child);
+
+                        int currLevel = child.GetSiblingIndex() + 1;
+                        if (currLevel + 1 > LevelTextures.Length)
+                            door.GetComponent<DoorObj>().NextLevel = 1;
+                        else
+                            door.GetComponent<DoorObj>().NextLevel = currLevel+1;
+
+                        doorLocated = true;
+                    }
                     break;
                 default:
-                    Vector3 pos = new Vector3(x + 0.25f, y + 0.25f, 0);
+                    Vector3 pos = new Vector3(x + 0.25f, y +0.5f,0);
                     Instantiate(tile, pos, Quaternion.identity, child);
                     break;
             }
@@ -85,7 +102,8 @@ public class LevelManager : MonoBehaviour
     public void OnLevelChange(int index)
     {
         ResetLevel();
-        ChangeLevel(index);
+        CurrentLevel = index;
+        ChangeLevel(CurrentLevel);
     }
 
     private void EraseLevel()
@@ -103,6 +121,11 @@ public class LevelManager : MonoBehaviour
         Transform nextLevel = Grid.GetChild(index - 1);
 
         nextLevel.gameObject.SetActive(true);
+
+        for (int i = 0; i < nextLevel.childCount; i++)
+        {
+            nextLevel.GetChild(i).gameObject.SetActive(true);
+        }
     }
     private void ResetLevel()
     {
@@ -110,6 +133,10 @@ public class LevelManager : MonoBehaviour
 
         level.gameObject.SetActive(false);
 
+        for (int i = 0; i < level.childCount; i++)
+        {
+            level.GetChild(i).gameObject.SetActive(false);
+        }
 
     }
 }

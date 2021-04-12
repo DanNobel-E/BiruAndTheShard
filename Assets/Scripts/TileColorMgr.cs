@@ -10,6 +10,8 @@ public class TileColorMgr :MonoBehaviour
     public Color IronColor = new Color(0, 1, 1, 1);
     public Color EnemyColor = new Color(1, 0, 0, 1);
     public Color BorderColor = new Color(0, 0, 0, 1);
+    public Color DoorColor = new Color(1, 0, 1, 1);
+
 
 
     public GameObject[] TilePrefab;
@@ -25,6 +27,8 @@ public class TileColorMgr :MonoBehaviour
         ColorsDictionary[IronColor] = TileType.Iron;
         ColorsDictionary[EnemyColor] = TileType.Enemy;
         ColorsDictionary[BorderColor] = TileType.Border;
+        ColorsDictionary[DoorColor] = TileType.Door;
+
 
 
         for (int i = 0; i < (int)TileType.Last; i++)

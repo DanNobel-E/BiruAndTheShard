@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2119162002411902683}
   - component: {fileID: 2119162002411902682}
   - component: {fileID: 2119162002411902680}
+  - component: {fileID: -7146088225616408726}
   m_Layer: 8
   m_Name: Biru
   m_TagString: Player
@@ -73,8 +74,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 871601585
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -4099418257374492983, guid: 6d83b8c6758cc7d4b8f8030a7adce65b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -145,7 +146,7 @@ MonoBehaviour:
   deathAnimSpeed: 0
   alive: 1
   oneTime: 1
-  RaycastLenght: 0.7
+  RaycastLenght: 0.75
   Raycastoffset: {x: 0, y: -0.3}
   moveSpeed: 5
   jumpForce: 4.5
@@ -185,3 +186,15 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.43, y: 2}
   m_Direction: 0
+--- !u!114 &-7146088225616408726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119162002411902629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 096722134bf60d84cbd1f2b8007f172b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -7,10 +7,11 @@ using UnityEngine.Events;
 
 public class Gem : MonoBehaviour, IPointerClickHandler
 {
-    public Vector3 Offset=Vector3.zero;
+    public Vector3 Offset = Vector3.zero;
     public float LerpFactor = 1;
     bool draggable;
     bool movable;
+    bool doorActive;
     Vector3 startPos;
     Vector3 borderPos;
 
@@ -25,6 +26,28 @@ public class Gem : MonoBehaviour, IPointerClickHandler
 
 
     }
+
+    private void OnEnable()
+    {
+        EventManager.OnDoorActivation.AddListener(OnDoorActivation);
+        EventManager.OnLevelChange.AddListener(OnLevelChange);
+
+    }
+
+    private void OnDisable()
+    {
+        EventManager.OnDoorActivation.RemoveListener(OnDoorActivation);
+
+    }
+
+    public void OnLevelChange(int index)
+    {
+        //EventManager.OnLevelChange.RemoveListener(OnLevelChange);
+        gameObject.SetActive(true);
+        draggable = false;
+        doorActive = false;
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         if (!draggable)
@@ -34,6 +57,12 @@ public class Gem : MonoBehaviour, IPointerClickHandler
         }
         else
         {
+            if (!doorActive)
+            {
+                draggable = false;
+                transform.position = startPos;
+
+            }
 
         }
     }
@@ -45,16 +74,26 @@ public class Gem : MonoBehaviour, IPointerClickHandler
 
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3 truePos = new Vector3(pos.x, pos.y, 0);
-            transform.position = Vector3.Lerp(transform.position, truePos, Time.deltaTime*LerpFactor) + Offset;
+            transform.position = Vector3.Lerp(transform.position, truePos, Time.deltaTime * LerpFactor) + Offset;
 
-        }else if (!movable)
+        }
+        else if (!movable)
         {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             if (mousePos.x < screenHandlerUR.position.x && mousePos.x > screenHandlerLD.position.x
-                && mousePos.y<screenHandlerUR.position.y && mousePos.y>screenHandlerLD.position.y)
+                && mousePos.y < screenHandlerUR.position.y && mousePos.y > screenHandlerLD.position.y)
                 movable = true;
         }
     }
+
+    public void OnDoorActivation()
+    {
+        transform.position = startPos;
+        gameObject.SetActive(false);
+
+    }
+
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -70,6 +109,10 @@ public class Gem : MonoBehaviour, IPointerClickHandler
         {
             borderPos = transform.position;
             movable = false;
+        } else if (collision.gameObject.CompareTag("Slot"))
+        {
+            doorActive = true;
+
         }
     }
 
@@ -80,4 +123,15 @@ public class Gem : MonoBehaviour, IPointerClickHandler
             transform.position = borderPos;
         }
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Slot"))
+        {
+            doorActive = false;
+
+        }
+
+    }
+
 }
