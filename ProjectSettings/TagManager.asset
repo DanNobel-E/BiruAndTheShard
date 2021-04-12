@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Erasable
+  - ColumnTag
   layers:
   - Default
   - TransparentFX
@@ -12,8 +13,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - GroundTile
+  - EnemyLayer
   - 
   - 
   - 

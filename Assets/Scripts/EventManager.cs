@@ -7,11 +7,16 @@ using UnityEngine.Events;
 
 public class EventManager : MonoBehaviour
 {
-    public static UnityEvent<int> OnLevelChange;
+    public static UnityEvent OnLevelChange;
+    public static UnityEvent OnButtonPressed;
+    public static UnityEvent OnBiruDie;
 
     void Awake()
     {
-        OnLevelChange = new UnityEvent<int>();
+        OnLevelChange = new UnityEvent();
+        OnButtonPressed = new UnityEvent();
+        OnBiruDie = new UnityEvent();
+
     }
 
     

@@ -13,21 +13,30 @@ public class Biru_Movements : MonoBehaviour
 
     [Header("DebugVariables")]
     public LayerMask GroundLayer;
+    public float deathAnimSpeed;
+    public bool alive = true;
+    public bool oneTime = true;
+
     public bool onGround => CheckIfGrounded();
     public bool canJump => Input.GetKeyDown(KeyCode.UpArrow) && onGround;
-
-   
+    
 
     public float RaycastLenght;
     public Vector2 Raycastoffset;
+
+
 
     [Header("MovementVariables")]
     public float moveSpeed = 5f;
 
     [Header("JumpVariables")]
-    public float jumpVelocity = 5f;
-    public float longJumpScale = 3f;
-    public float lowJumpScale = 2f;
+    [Range(0, 10)]
+    public float jumpForce = 5f;
+    [Range(0,10)]
+    public float fallGravityScale = 3f;
+    [Range(0, 10)]
+    public float ascendGravityScale = 3f;
+
 
 
     [Header("GUIVariables")]
@@ -35,19 +44,35 @@ public class Biru_Movements : MonoBehaviour
     public Vector2 GUIPosition= new Vector2(20,20);
     public int GUIFontSize;
     public Color GUIColor;
+   
 
     void Start()
     {
         rb=GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+      
     }
+
+    private void OnCollisionEnter2D(Collision2D other) //idk if is better to handle collsion with trigger or with collider (non ne sono molto contento, della logica in generale)
+    {
+        if (other.gameObject.name == "Enemy")
+        {
+            Debug.Log("ho colpito un nemico");
+            alive = false;
+            
+            rb.simulated = false;
+        }
+    
+    }
+    
 
     private void Update()
     {
         SpriteFlip();
         if (canJump) JumpCharacter();
-       
+        if (!alive && sr.enabled) DeathAnimMovement();
         
+
     }
     void FixedUpdate()
     {
@@ -57,13 +82,14 @@ public class Biru_Movements : MonoBehaviour
 
     private void ControlGravity()
     {
-        if (rb.velocity.y < 0) rb.gravityScale = longJumpScale;
-        else if (rb.velocity.y > 0 && !Input.GetKey(KeyCode.UpArrow)) rb.gravityScale = lowJumpScale;
+        if (rb.velocity.y > 0) rb.gravityScale = ascendGravityScale;
+        else if (rb.velocity.y < 0) rb.gravityScale = fallGravityScale;
         else rb.gravityScale = 1;
     }
 
-    private Vector2 GetInput()
+    private Vector2 GetInput() //refactor
     {
+
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
 
@@ -72,25 +98,33 @@ public class Biru_Movements : MonoBehaviour
 
     private void MoveCharacter(Vector2 input)
     {
-        rb.velocity = new Vector2(input.x * moveSpeed, rb.velocity.y);
+       rb.velocity = new Vector2(input.x * moveSpeed, rb.velocity.y);
+       
+       
     }
 
     private void JumpCharacter()
     {
-        rb.velocity += Vector2.up * jumpVelocity;
+        rb.velocity += Vector2.up * jumpForce;
     }
 
-    private bool CheckIfGrounded()
+    public bool CheckIfGrounded()
     {
        return Physics2D.Raycast((Vector2)transform.position+Raycastoffset, Vector2.down, RaycastLenght, GroundLayer);
     }
+
+    public void DeathAnimMovement() //Chiedere a seb perchè se lo faccio nell'animator non funziona...
+    {
+        transform.position += new Vector3(0,1,0)*Time.deltaTime * deathAnimSpeed;
+    }
+   
 
     #region DebugRegion
     private void OnGUI()
     {
         GUI.color = GUIColor;
         GUI.skin.label.fontSize = GUIFontSize;
-        GUI.Label(new Rect(GUIPosition.x, GUIPosition.y, GUIDimensions.x, GUIDimensions.y), $"rb.velocity = {rb.velocity}");
+        GUI.Label(new Rect(GUIPosition.x, GUIPosition.y, GUIDimensions.x, GUIDimensions.y), $"velocity: {rb.velocity}\nAlive: {alive}");
     }
     private void OnDrawGizmos()
     {
