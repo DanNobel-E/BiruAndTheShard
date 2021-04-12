@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2119162002411902683}
   - component: {fileID: 2119162002411902682}
   - component: {fileID: 2119162002411902680}
+  - component: {fileID: -7146088225616408726}
   m_Layer: 8
   m_Name: Biru
   m_TagString: Player
@@ -185,3 +186,15 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.43, y: 2}
   m_Direction: 0
+--- !u!114 &-7146088225616408726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119162002411902629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 096722134bf60d84cbd1f2b8007f172b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -102,7 +102,8 @@ public class LevelManager : MonoBehaviour
     public void OnLevelChange(int index)
     {
         ResetLevel();
-        ChangeLevel(index);
+        CurrentLevel = index;
+        ChangeLevel(CurrentLevel);
     }
 
     private void EraseLevel()
@@ -120,6 +121,11 @@ public class LevelManager : MonoBehaviour
         Transform nextLevel = Grid.GetChild(index - 1);
 
         nextLevel.gameObject.SetActive(true);
+
+        for (int i = 0; i < nextLevel.childCount; i++)
+        {
+            nextLevel.GetChild(i).gameObject.SetActive(true);
+        }
     }
     private void ResetLevel()
     {
@@ -127,6 +133,10 @@ public class LevelManager : MonoBehaviour
 
         level.gameObject.SetActive(false);
 
+        for (int i = 0; i < level.childCount; i++)
+        {
+            level.GetChild(i).gameObject.SetActive(false);
+        }
 
     }
 }

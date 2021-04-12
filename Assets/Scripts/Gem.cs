@@ -37,14 +37,13 @@ public class Gem : MonoBehaviour, IPointerClickHandler
     private void OnDisable()
     {
         EventManager.OnDoorActivation.RemoveListener(OnDoorActivation);
-        EventManager.OnLevelChange.RemoveListener(OnLevelChange);
-
 
     }
 
     public void OnLevelChange(int index)
     {
-        transform.position = startPos;
+        //EventManager.OnLevelChange.RemoveListener(OnLevelChange);
+        gameObject.SetActive(true);
         draggable = false;
         doorActive = false;
     }
