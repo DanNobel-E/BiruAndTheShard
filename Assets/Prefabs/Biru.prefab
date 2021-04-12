@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2119162002411902683}
   - component: {fileID: 2119162002411902682}
   - component: {fileID: 2119162002411902680}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Biru
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -145,7 +145,7 @@ MonoBehaviour:
   deathAnimSpeed: 0
   alive: 1
   oneTime: 1
-  RaycastLenght: 0.3
+  RaycastLenght: 0.7
   Raycastoffset: {x: 0, y: -0.3}
   moveSpeed: 5
   jumpForce: 4.5
@@ -182,6 +182,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.027119756, y: -0.064591765}
-  m_Size: {x: 0.55821013, y: 0.8776157}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.43, y: 2}
   m_Direction: 0

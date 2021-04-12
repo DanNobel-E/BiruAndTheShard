@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class ErasableObj : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public void Erase()
     {
-        
+        gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+   
 }

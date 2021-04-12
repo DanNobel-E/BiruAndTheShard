@@ -16,7 +16,7 @@ public class TileColorMgr :MonoBehaviour
 
     public static Dictionary<Color, TileType> ColorsDictionary = new Dictionary<Color, TileType>();
     public static Dictionary<TileType, GameObject> TilesDictionary = new Dictionary<TileType, GameObject>();
-
+    
     void Awake()
     {
         ColorsDictionary[PlayerColor] = TileType.Player;
