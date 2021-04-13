@@ -21,8 +21,9 @@ public class Biru_Movements : MonoBehaviour
     public bool canJump => Input.GetKeyDown(KeyCode.UpArrow) && onGround;
     
 
-    public float RaycastLenght;
-    public Vector2 Raycastoffset;
+    public float boxAngle;
+    public Vector2 boxOffset;
+    public Vector2 boxDimensions;
 
 
 
@@ -110,7 +111,7 @@ public class Biru_Movements : MonoBehaviour
 
     public bool CheckIfGrounded()
     {
-       return Physics2D.Raycast((Vector2)transform.position+Raycastoffset, Vector2.down, RaycastLenght, GroundLayer);
+       return Physics2D.OverlapBox((Vector2)transform.position+boxOffset, boxDimensions, boxAngle, GroundLayer);
     }
 
     public void DeathAnimMovement() //Chiedere a seb perchè se lo faccio nell'animator non funziona...
@@ -130,7 +131,7 @@ public class Biru_Movements : MonoBehaviour
     {
         Gizmos.color = Color.red;
 
-        Gizmos.DrawRay((Vector2)transform.position+Raycastoffset, Vector2.down*RaycastLenght);
+        Gizmos.DrawWireCube((Vector2)transform.position+boxOffset, boxDimensions);
     }
 
     private void SpriteFlip()

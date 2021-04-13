@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 2119162002411902628}
   - component: {fileID: 2119162002411902683}
   - component: {fileID: 2119162002411902682}
-  - component: {fileID: 2119162002411902680}
   - component: {fileID: -7146088225616408726}
+  - component: {fileID: 1865649110}
   m_Layer: 8
   m_Name: Biru
   m_TagString: Player
@@ -146,15 +146,16 @@ MonoBehaviour:
   deathAnimSpeed: 0
   alive: 1
   oneTime: 1
-  RaycastLenght: 0.75
-  Raycastoffset: {x: 0, y: -0.3}
+  boxAngle: 0
+  boxOffset: {x: -0.06, y: -0.87}
+  boxDimensions: {x: 1.04, y: 0.33}
   moveSpeed: 5
-  jumpForce: 4.5
+  jumpForce: 5.3
   fallGravityScale: 2
   ascendGravityScale: 1.3
-  GUIDimensions: {x: 200, y: 150}
+  GUIDimensions: {x: 400, y: 300}
   GUIPosition: {x: 20, y: 20}
-  GUIFontSize: 20
+  GUIFontSize: 50
   GUIColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!114 &2119162002411902682
 MonoBehaviour:
@@ -170,8 +171,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   BiruDead: 0
---- !u!70 &2119162002411902680
-CapsuleCollider2D:
+--- !u!114 &-7146088225616408726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119162002411902629}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 096722134bf60d84cbd1f2b8007f172b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &1865649110
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -183,18 +196,16 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.43, y: 2}
-  m_Direction: 0
---- !u!114 &-7146088225616408726
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2119162002411902629}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 096722134bf60d84cbd1f2b8007f172b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Offset: {x: -0.06510472, y: -0.11489093}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2, y: 2}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.1344876, y: 1.7548993}
+  m_EdgeRadius: 0
