@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ErasableObj : MonoBehaviour
 {
@@ -8,6 +9,4 @@ public class ErasableObj : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-
-   
 }
