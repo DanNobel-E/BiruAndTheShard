@@ -2627,6 +2627,22 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1865649110, guid: 4205b562b51e38848a47ec3128a0298e, type: 3}
+      propertyPath: m_Size.x
+      value: 0.88098335
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865649110, guid: 4205b562b51e38848a47ec3128a0298e, type: 3}
+      propertyPath: m_Size.y
+      value: 1.6164436
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865649110, guid: 4205b562b51e38848a47ec3128a0298e, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.06051922
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865649110, guid: 4205b562b51e38848a47ec3128a0298e, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.18411875
+      objectReference: {fileID: 0}
     - target: {fileID: 2119162002411902629, guid: 4205b562b51e38848a47ec3128a0298e, type: 3}
       propertyPath: m_Name
       value: Biru
@@ -2674,6 +2690,14 @@ PrefabInstance:
     - target: {fileID: 2119162002411902681, guid: 4205b562b51e38848a47ec3128a0298e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119162002411902683, guid: 4205b562b51e38848a47ec3128a0298e, type: 3}
+      propertyPath: boxOffset.y
+      value: -0.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 2119162002411902683, guid: 4205b562b51e38848a47ec3128a0298e, type: 3}
+      propertyPath: boxDimensions.x
+      value: 0.62
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4205b562b51e38848a47ec3128a0298e, type: 3}
