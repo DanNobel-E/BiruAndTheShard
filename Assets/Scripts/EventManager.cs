@@ -11,6 +11,7 @@ public class EventManager : MonoBehaviour
     public static UnityEvent OnDoorActivation;
     public static UnityEvent OnButtonPressed;
     public static UnityEvent OnBiruDie;
+    
 
     void Awake()
     {
@@ -18,6 +19,7 @@ public class EventManager : MonoBehaviour
         OnDoorActivation = new UnityEvent();
         OnButtonPressed = new UnityEvent();
         OnBiruDie = new UnityEvent();
+       
 
     }
 
