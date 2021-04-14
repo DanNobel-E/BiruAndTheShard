@@ -112,6 +112,7 @@ public class Gem : MonoBehaviour, IPointerClickHandler
         } else if (collision.gameObject.CompareTag("Slot"))
         {
             doorActive = true;
+            collision.GetComponent<ActivableObj>().IsGemInside(doorActive);
 
         }
     }
@@ -129,6 +130,8 @@ public class Gem : MonoBehaviour, IPointerClickHandler
         if (collision.gameObject.CompareTag("Slot"))
         {
             doorActive = false;
+            collision.GetComponent<ActivableObj>().IsGemInside(doorActive);
+
 
         }
 

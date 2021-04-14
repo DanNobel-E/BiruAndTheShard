@@ -7,6 +7,8 @@ public class ActivableObj : MonoBehaviour
 {
     Animator anim;
     string activationParam = "Activate";
+    bool gemInside;
+    bool press;
 
     private void Start()
     {
@@ -30,6 +32,22 @@ public class ActivableObj : MonoBehaviour
 
     }
 
+    public void IsGemInside(bool b){
+
+        gemInside=b;
+    }
+
+    void Update(){
+
+        if(gemInside){
+
+        if(Input.GetMouseButtonDown(0)){
+            press=true;
+        }else if(Input.GetMouseButtonUp(0)){
+            press=false;
+        }
+        }
+    }
     public void OnLevelChange(int index)
     {
         anim.SetBool(activationParam, false);
@@ -40,7 +58,7 @@ public class ActivableObj : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
       
-        if (collision.CompareTag("Gem") && Input.GetMouseButtonDown(0))
+        if (collision.CompareTag("Gem") && press)
         {
             bool status = anim.GetBool(activationParam);
             SetActive(!status);
