@@ -11,6 +11,8 @@ public class TileColorMgr :MonoBehaviour
     public Color EnemyColor = new Color(1, 0, 0, 1);
     public Color BorderColor = new Color(0, 0, 0, 1);
     public Color DoorColor = new Color(1, 0, 1, 1);
+    public Color BaseColor = new Color(1, 1, 1, 1);
+
 
 
 
@@ -28,6 +30,8 @@ public class TileColorMgr :MonoBehaviour
         ColorsDictionary[EnemyColor] = TileType.Enemy;
         ColorsDictionary[BorderColor] = TileType.Border;
         ColorsDictionary[DoorColor] = TileType.Door;
+        ColorsDictionary[BaseColor] = TileType.Base;
+
 
 
 

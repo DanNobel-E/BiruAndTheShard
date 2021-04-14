@@ -10,6 +10,7 @@ TagManager:
   - Border
   - Door
   - Slot
+  - BorderTile
   layers:
   - Default
   - TransparentFX

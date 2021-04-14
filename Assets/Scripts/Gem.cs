@@ -9,6 +9,8 @@ public class Gem : MonoBehaviour, IPointerClickHandler
 {
     public Vector3 Offset = Vector3.zero;
     public float LerpFactor = 1;
+    int levelId;
+    bool active;
     bool draggable;
     bool movable;
     bool doorActive;
@@ -24,7 +26,7 @@ public class Gem : MonoBehaviour, IPointerClickHandler
         screenHandlerLD = Camera.main.transform.GetChild(0);
         screenHandlerUR = Camera.main.transform.GetChild(1);
 
-
+        levelId = transform.parent.GetSiblingIndex() + 1;
     }
 
     private void OnEnable()
@@ -34,18 +36,34 @@ public class Gem : MonoBehaviour, IPointerClickHandler
 
     }
 
+
     private void OnDisable()
     {
         EventManager.OnDoorActivation.RemoveListener(OnDoorActivation);
+        
 
     }
 
     public void OnLevelChange(int index)
     {
-        //EventManager.OnLevelChange.RemoveListener(OnLevelChange);
-        gameObject.SetActive(true);
-        draggable = false;
-        doorActive = false;
+       
+        if (active)
+        {
+            //EventManager.OnLevelChange.RemoveListener(OnLevelChange);
+            if (index == 0)
+                transform.position = startPos;
+
+           
+            draggable = false;
+            doorActive = false;
+            active = false;
+
+        }
+        else
+        {
+            if (levelId == index)
+                gameObject.SetActive(true);
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -54,6 +72,7 @@ public class Gem : MonoBehaviour, IPointerClickHandler
         {
             draggable = true;
             movable = true;
+            active = true;
         }
         else
         {
@@ -105,7 +124,8 @@ public class Gem : MonoBehaviour, IPointerClickHandler
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Border"))
+        if (collision.gameObject.CompareTag("BorderTile") ||
+            collision.gameObject.CompareTag("Border"))
         {
             borderPos = transform.position;
             movable = false;
@@ -119,7 +139,8 @@ public class Gem : MonoBehaviour, IPointerClickHandler
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Border"))
+        if (collision.gameObject.CompareTag("BorderTile") ||
+            collision.gameObject.CompareTag("Border"))
         {
             transform.position = borderPos;
         }
