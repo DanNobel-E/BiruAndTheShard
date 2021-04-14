@@ -11,6 +11,7 @@ public class Enemy_Ctrl : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator anim;
     Vector3 forward;
+    bool walk = false;
 
     void Start()
     {
@@ -28,8 +29,11 @@ public class Enemy_Ctrl : MonoBehaviour
         else
             anim.SetBool("IsWalking", false);
 
-        RaycastEnemy();
-        rigidBody.velocity = transform.right * Speed * Time.deltaTime;//lasciando il deltaTime devo aumentare molto la speed, ma togliendo il deltaTime non è piuà frame dependent
+        if (walk)
+        {
+            RaycastEnemy();
+            rigidBody.velocity = transform.right * Speed * Time.deltaTime;//lasciando il deltaTime devo aumentare molto la speed, ma togliendo il deltaTime non è piuà frame dependent
+        }
     }
     void RaycastEnemy()
     {
@@ -50,5 +54,14 @@ public class Enemy_Ctrl : MonoBehaviour
                 spriteRenderer.flipX = !spriteRenderer.flipX;
             }
         }
+    }
+
+    void EnableFrameWalk()
+    {
+        walk = true;
+    }
+    void DisableFrameWalk()
+    {
+        walk = false;
     }
 }
