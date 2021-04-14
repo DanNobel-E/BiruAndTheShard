@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Enemy_Ctrl : MonoBehaviour
 {
     public float Speed;
@@ -33,8 +34,11 @@ public class Enemy_Ctrl : MonoBehaviour
     void RaycastEnemy()
     {
         forward = (transform.right * Speed).normalized;
-        RaycastHit2D ray = Physics2D.Raycast(transform.position + forward * .6f, forward, .1f);
-        Debug.DrawRay(transform.position + forward * .5f, forward);
+        Vector2 origin = new Vector2(transform.position.x + forward.x * .8f, transform.position.y * 2);
+        //RaycastHit2D ray = Physics2D.Raycast(transform.position + forward * .6f, forward, .1f);
+        RaycastHit2D ray = Physics2D.Raycast(origin, forward, .1f);
+        //Debug.DrawRay(transform.position + forward * .5f, forward);
+        Debug.DrawRay(origin, forward);
 
         if (ray.collider != null)
         {
