@@ -20,7 +20,7 @@ public class BiruAnimatorController : MonoBehaviour
 
 
     //Animator Parameters
-    bool runAnim => Mathf.Abs(rb.velocity.x) > 0.1 && rb.velocity.y == 0.0f;
+    bool runAnim => Mathf.Abs(rb.velocity.x) > 0.1 && bm.onGround;
     bool fallAnim => rb.velocity.y <= 0.1f;
     bool JumpAnim => rb.velocity.y >= 0.1f;
     
