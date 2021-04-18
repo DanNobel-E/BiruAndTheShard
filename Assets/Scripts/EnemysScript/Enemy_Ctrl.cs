@@ -11,6 +11,7 @@ public class Enemy_Ctrl : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Animator anim;
     Vector3 forward;
+    float startGravityScale;
     bool walk = false;
 
     void Start()
@@ -18,6 +19,7 @@ public class Enemy_Ctrl : MonoBehaviour
         rigidBody = transform.GetComponent<Rigidbody2D>();
         spriteRenderer = transform.GetComponent<SpriteRenderer>();
         anim = transform.GetComponent<Animator>();
+        startGravityScale = rigidBody.gravityScale;
     }
 
     // Update is called once per frame
@@ -29,9 +31,9 @@ public class Enemy_Ctrl : MonoBehaviour
         else
             anim.SetBool("IsWalking", false);
 
+        RaycastEnemy();
         if (walk)
         {
-            RaycastEnemy();
             rigidBody.velocity = transform.right * Speed * Time.deltaTime;//lasciando il deltaTime devo aumentare molto la speed, ma togliendo il deltaTime non è piuà frame dependent
         }
     }
@@ -39,9 +41,7 @@ public class Enemy_Ctrl : MonoBehaviour
     {
         forward = (transform.right * Speed).normalized;
         Vector2 origin = new Vector2(transform.position.x + forward.x * .8f, transform.position.y * 2);
-        //RaycastHit2D ray = Physics2D.Raycast(transform.position + forward * .6f, forward, .1f);
         RaycastHit2D ray = Physics2D.Raycast(origin, forward, .1f);
-        //Debug.DrawRay(transform.position + forward * .5f, forward);
         Debug.DrawRay(origin, forward);
 
         if (ray.collider != null)
@@ -55,13 +55,22 @@ public class Enemy_Ctrl : MonoBehaviour
             }
         }
     }
-
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Spikes_Trap"))
+        {
+            anim.SetBool("IsDeath", true);
+            //gameObject.SetActive(false);
+        }
+    }
     void EnableFrameWalk()
     {
         walk = true;
+        rigidBody.gravityScale = 0;
     }
     void DisableFrameWalk()
     {
         walk = false;
+        rigidBody.gravityScale = startGravityScale;
     }
 }
