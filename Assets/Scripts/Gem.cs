@@ -2,11 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Tilemaps;
 using UnityEngine.Events;
 
 
 public class Gem : MonoBehaviour, IPointerClickHandler
 {
+    #region Valerio
+    public Tilemap erasableTilemap;
+   
+    #endregion
     public Vector3 Offset = Vector3.zero;
     public float LerpFactor = 1;
     int levelId;
@@ -103,6 +108,9 @@ public class Gem : MonoBehaviour, IPointerClickHandler
                 && mousePos.y < screenHandlerUR.position.y && mousePos.y > screenHandlerLD.position.y)
                 movable = true;
         }
+
+        Vector3Int gemPos = erasableTilemap.WorldToCell(transform.position);
+        if(erasableTilemap.GetTile(gemPos)!=null)erasableTilemap.SetTile(gemPos, null);
     }
 
     public void OnDoorActivation()
@@ -116,10 +124,11 @@ public class Gem : MonoBehaviour, IPointerClickHandler
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Erasable"))
-        {
-            collision.gameObject.GetComponent<ErasableObj>().Erase();
-        }
+        //--------------------testing------------------//
+        //if (collision.gameObject.CompareTag("Erasable"))
+        //{
+        //    collision.gameObject.GetComponent<ErasableObj>().Erase();
+        //}
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
