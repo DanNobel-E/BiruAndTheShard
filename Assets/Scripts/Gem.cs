@@ -10,11 +10,10 @@ public class Gem : MonoBehaviour, IPointerClickHandler
 {
     #region Valerio
     public Tilemap erasableTilemap;
-   
     #endregion
     public Vector3 Offset = Vector3.zero;
     public float LerpFactor = 1;
-    int levelId;
+    public int LevelId { get; set; }
     bool active;
     bool draggable;
     bool movable;
@@ -31,7 +30,6 @@ public class Gem : MonoBehaviour, IPointerClickHandler
         screenHandlerLD = Camera.main.transform.GetChild(0);
         screenHandlerUR = Camera.main.transform.GetChild(1);
 
-        levelId = transform.parent.GetSiblingIndex() + 1;
     }
 
     private void OnEnable()
@@ -58,7 +56,12 @@ public class Gem : MonoBehaviour, IPointerClickHandler
             if (index == 0)
                 transform.position = startPos;
 
-           
+            erasableTilemap.ClearAllTiles();
+            List<Vector3Int> pos = LevelGenerator.TilemapDic[LevelId].Item1;
+            List<TileBase> tiles = LevelGenerator.TilemapDic[LevelId].Item2;
+
+            erasableTilemap.SetTiles(pos.ToArray(), tiles.ToArray());
+
             draggable = false;
             doorActive = false;
             active = false;
@@ -66,9 +69,12 @@ public class Gem : MonoBehaviour, IPointerClickHandler
         }
         else
         {
-            if (levelId == index)
+            if (LevelId == index)
                 gameObject.SetActive(true);
+
+           
         }
+    
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -99,7 +105,7 @@ public class Gem : MonoBehaviour, IPointerClickHandler
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector3 truePos = new Vector3(pos.x, pos.y, 0);
             transform.position = Vector3.Lerp(transform.position, truePos, Time.deltaTime * LerpFactor) + Offset;
-
+          
         }
         else if (!movable)
         {
@@ -110,7 +116,8 @@ public class Gem : MonoBehaviour, IPointerClickHandler
         }
 
         Vector3Int gemPos = erasableTilemap.WorldToCell(transform.position);
-        if(erasableTilemap.GetTile(gemPos)!=null)erasableTilemap.SetTile(gemPos, null);
+        if (erasableTilemap.GetTile(gemPos) != null)
+            erasableTilemap.SetTile(gemPos,null);
     }
 
     public void OnDoorActivation()

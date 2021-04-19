@@ -9,7 +9,7 @@ public enum goType { Player, Gem, Door, Last }
 public class LevelGenerator : MonoBehaviour
 {
     public Texture2D[] LevelTextures;
-
+    public static Dictionary<int, Tuple<List<Vector3Int>, List<TileBase>>> TilemapDic = new Dictionary<int, Tuple<List<Vector3Int>, List<TileBase>>>();
     public prefabParser[] colorToPrefabs;
     public tilebaseParser[] colorToTileBases;
     public List<Tilemap> tilemaps;
@@ -35,6 +35,9 @@ public class LevelGenerator : MonoBehaviour
         var Lgrid = newLevel.AddComponent<Grid>();
         newLevel.transform.SetParent(this.transform);
         newLevel.name = $"Level_{index + 1}";
+
+        TilemapDic[index + 1] = new Tuple<List<Vector3Int>, List<TileBase>>(new List<Vector3Int>(), new List<TileBase>());
+
         for (int i = 0; i < (int)tmType.Last; i++)
         {
             tilemaps[i] = CreateTilemap($"tm_{(tmType)i}", newLevel.transform);
@@ -55,18 +58,21 @@ public class LevelGenerator : MonoBehaviour
                         switch (item.tmType)
                         {
                             case tmType.Grass:
-                                tilemaps[0].SetTile(new Vector3Int(x, y, 0), item.TileBase);
+                                Vector3Int pos = new Vector3Int(x, y, 0);
+                                tilemaps[0].SetTile(pos, item.TileBase);
+                                TilemapDic[index + 1].Item1.Add(pos);
+                                TilemapDic[index + 1].Item2.Add(item.TileBase);
                                 break;
                             case tmType.Stone:
                                 tilemaps[1].SetTile(new Vector3Int(x, y, 0), item.TileBase);
                                 break;
                             
-                            default:
-                                break;
+                          
                         }
                         
                     }
                 }
+
 
                 foreach (prefabParser item in colorToPrefabs)
                 {
@@ -76,7 +82,9 @@ public class LevelGenerator : MonoBehaviour
                         {
                             case goType.Gem:
                                 GameObject gem = Instantiate(item.Prefab, new Vector3(x, y, 0), Quaternion.identity, newLevel.transform);
-                                gem.GetComponentInChildren<Gem>().erasableTilemap = tilemaps[0];
+                                Gem g = gem.GetComponentInChildren<Gem>();
+                                g.erasableTilemap = tilemaps[0];
+                                g.LevelId = index + 1;
                                 
                                 break;
                             case goType.Door:
@@ -87,8 +95,6 @@ public class LevelGenerator : MonoBehaviour
                                 else
                                     door.GetComponent<DoorObj>().NextLevel = currLevel + 1;
                                 break;
-                           
-                               
                             default:
                                 Instantiate(item.Prefab, new Vector3(x, y, 0), Quaternion.identity, newLevel.transform);
                                 break;
