@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public enum tmType { Grass, Stone, Last }
-public enum goType { Player, Gem, Door, Last }
+public enum TilemapType { Grass, Stone, Base, Last } //added new types to tilemapTypes and PrefabTypes
+public enum PrefabType { Player, Gem, Door, Button, Border, Last }
 public class LevelGenerator : MonoBehaviour
 {
     public Texture2D[] LevelTextures;
@@ -38,9 +38,9 @@ public class LevelGenerator : MonoBehaviour
 
         TilemapDic[index + 1] = new Tuple<List<Vector3Int>, List<TileBase>>(new List<Vector3Int>(), new List<TileBase>());
 
-        for (int i = 0; i < (int)tmType.Last; i++)
+        for (int i = 0; i < (int)TilemapType.Last; i++)
         {
-            tilemaps[i] = CreateTilemap($"tm_{(tmType)i}", newLevel.transform);
+            tilemaps[i] = CreateTilemap((TilemapType)i, newLevel.transform);
         }
 
         for (int x = 0; x < texture2D.width; x++)
@@ -57,14 +57,17 @@ public class LevelGenerator : MonoBehaviour
                     {
                         switch (item.tmType)
                         {
-                            case tmType.Grass:
+                            case TilemapType.Grass:
                                 Vector3Int pos = new Vector3Int(x, y, 0);
                                 tilemaps[0].SetTile(pos, item.TileBase);
                                 TilemapDic[index + 1].Item1.Add(pos);
                                 TilemapDic[index + 1].Item2.Add(item.TileBase);
                                 break;
-                            case tmType.Stone:
+                            case TilemapType.Stone: //added stone tilemap
                                 tilemaps[1].SetTile(new Vector3Int(x, y, 0), item.TileBase);
+                                break;
+                            case TilemapType.Base:
+                                tilemaps[2].SetTile(new Vector3Int(x, y, 0), item.TileBase);
                                 break;
                             
                           
@@ -80,20 +83,32 @@ public class LevelGenerator : MonoBehaviour
                     {
                         switch (item.goType)
                         {
-                            case goType.Gem:
+                            case PrefabType.Gem:
                                 GameObject gem = Instantiate(item.Prefab, new Vector3(x, y, 0), Quaternion.identity, newLevel.transform);
                                 Gem g = gem.GetComponentInChildren<Gem>();
                                 g.erasableTilemap = tilemaps[0];
+                                g.notErasableTilemap = tilemaps[1]; //added not erasable tilemap to gem
                                 g.LevelId = index + 1;
-                                
                                 break;
-                            case goType.Door:
+                            case PrefabType.Door:
                                 GameObject door = Instantiate(item.Prefab, new Vector3(x, y, 0), Quaternion.identity, newLevel.transform);
+                                DoorObj d= door.GetComponent<DoorObj>();
+                                d.LevelId = index + 1;
                                 int currLevel = newLevel.transform.GetSiblingIndex() + 1;
                                 if (currLevel + 1 > LevelTextures.Length)
-                                    door.GetComponent<DoorObj>().NextLevel = 1;
+                                    d.NextLevel = 1;
                                 else
-                                    door.GetComponent<DoorObj>().NextLevel = currLevel + 1;
+                                    d.NextLevel = currLevel + 1;
+                                break;
+                            case PrefabType.Player:
+                                GameObject player= Instantiate(item.Prefab, new Vector3(x, y, 0), Quaternion.identity, newLevel.transform);
+                                PlayerMgr p = player.GetComponent<PlayerMgr>();
+                                p.LevelId = index + 1;
+                                break;
+                            case PrefabType.Button: //managed buttons spawning
+                                GameObject button = Instantiate(item.Prefab, new Vector3(x, y, 0), Quaternion.identity, newLevel.transform);
+                                ButtonLogic b = button.GetComponent<ButtonLogic>();
+                                b.LevelId = index + 1; 
                                 break;
                             default:
                                 Instantiate(item.Prefab, new Vector3(x, y, 0), Quaternion.identity, newLevel.transform);
@@ -154,15 +169,23 @@ public class LevelGenerator : MonoBehaviour
         }
     }
 
-    private Tilemap CreateTilemap(string tilemapName, Transform gridParent, string layerName = "GroundTile")
+    private Tilemap CreateTilemap(TilemapType type, Transform gridParent, string layerName = "GroundTile")
     {
-        var go = new GameObject(tilemapName);
+        var go = new GameObject($"tm_{type}");
         go.layer = LayerMask.NameToLayer(layerName);
         var tm = go.AddComponent<Tilemap>();
         var tr = go.AddComponent<TilemapRenderer>();
         go.AddComponent<TilemapCollider2D>();
 
-        
+        //added tile manager script to tilemaps game objects
+        var tmgr = go.AddComponent<TilemapMgr>();
+        tmgr.Type= type;
+        tmgr.enabled = false;
+        tmgr.enabled = true;
+        tmgr.LevelId = gridParent.GetSiblingIndex() + 1;
+
+
+
         tm.tileAnchor = new Vector3(0.5f, 0.5f, 0);
         go.transform.SetParent(gridParent.transform);
         tr.sortingLayerName = layerName;

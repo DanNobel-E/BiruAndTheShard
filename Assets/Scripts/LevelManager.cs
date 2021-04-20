@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TileType { Player, Gem, Stone, Iron, Enemy, Border, Door, Base, Last}
+public enum TileType { Player, Gem, Grass, Stone, Enemy, Border, Door, Base, Last}
 public class LevelManager : MonoBehaviour
 {
 

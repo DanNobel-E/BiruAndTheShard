@@ -5,14 +5,13 @@ using UnityEngine;
 public class PlayerMgr : MonoBehaviour
 {
     Vector3 startPos;
-    int levelId;
+    public int LevelId { get; set; }
 
 
     void Start()
     {
         startPos = transform.position;
-        levelId = transform.parent.GetSiblingIndex() + 1;
-
+    
     }
 
     private void OnEnable()

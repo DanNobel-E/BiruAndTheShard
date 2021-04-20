@@ -10,6 +10,8 @@ public class Gem : MonoBehaviour, IPointerClickHandler
 {
     #region Valerio
     public Tilemap erasableTilemap;
+    public Tilemap notErasableTilemap;
+
     #endregion
     public Vector3 Offset = Vector3.zero;
     public float LerpFactor = 1;
@@ -21,7 +23,7 @@ public class Gem : MonoBehaviour, IPointerClickHandler
     Vector3 startPos;
     Vector3 borderPos;
 
-    Transform screenHandlerLD, screenHandlerUR;
+    static Transform screenHandlerLD, screenHandlerUR;
 
     private void Start()
     {
@@ -56,6 +58,7 @@ public class Gem : MonoBehaviour, IPointerClickHandler
             if (index == 0)
                 transform.position = startPos;
 
+            //Manage tile restoring on level change
             erasableTilemap.ClearAllTiles();
             List<Vector3Int> pos = LevelGenerator.TilemapDic[LevelId].Item1;
             List<TileBase> tiles = LevelGenerator.TilemapDic[LevelId].Item2;
@@ -89,35 +92,61 @@ public class Gem : MonoBehaviour, IPointerClickHandler
         {
             if (!doorActive)
             {
-                draggable = false;
-                transform.position = startPos;
+                ResetGem();
 
             }
 
         }
     }
 
+    public void ResetGem()
+    {
+        draggable = false;
+        transform.position = startPos;
+    }
+
     private void Update()
     {
         if (draggable && movable)
         {
-
-            Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector3 truePos = new Vector3(pos.x, pos.y, 0);
-            transform.position = Vector3.Lerp(transform.position, truePos, Time.deltaTime * LerpFactor) + Offset;
-          
-        }
-        else if (!movable)
-        {
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            if (mousePos.x < screenHandlerUR.position.x && mousePos.x > screenHandlerLD.position.x
-                && mousePos.y < screenHandlerUR.position.y && mousePos.y > screenHandlerLD.position.y)
-                movable = true;
+            if (IsInsideBounds(mousePos,transform.localScale))
+            {
+                Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector3 truePos = new Vector3(pos.x, pos.y, 0);
+                transform.position = Vector3.Lerp(transform.position, truePos, Time.deltaTime * LerpFactor) + Offset;
+
+                Vector3Int gemPosE = erasableTilemap.WorldToCell(transform.position);
+                if (erasableTilemap.GetTile(gemPosE) != null)
+                    erasableTilemap.SetTile(gemPosE, null);
+
+                //Managing not erasable tilemap collisions
+                if (notErasableTilemap.isActiveAndEnabled)
+                {
+                    Vector3Int gemPosNE = notErasableTilemap.WorldToCell(transform.position);
+                    if (notErasableTilemap.GetTile(gemPosNE) != null)
+                        ResetGem();
+
+                }
+
+
+            }
+        }
+        
+
+        
+    }
+
+    public static bool IsInsideBounds(Vector3 pos, Vector3 scale)
+    {
+        bool result = false;
+        if (pos.x < screenHandlerUR.position.x-(scale.x*0.5f)&& pos.x > screenHandlerLD.position.x+ (scale.x * 0.5f)
+                && pos.y < screenHandlerUR.position.y- (scale.y * 0.5f) && pos.y > screenHandlerLD.position.y+ (scale.y * 0.5f))
+        {
+            result = true;
         }
 
-        Vector3Int gemPos = erasableTilemap.WorldToCell(transform.position);
-        if (erasableTilemap.GetTile(gemPos) != null)
-            erasableTilemap.SetTile(gemPos,null);
+        return result;
     }
 
     public void OnDoorActivation()
@@ -136,6 +165,7 @@ public class Gem : MonoBehaviour, IPointerClickHandler
         //{
         //    collision.gameObject.GetComponent<ErasableObj>().Erase();
         //}
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -153,14 +183,14 @@ public class Gem : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("BorderTile") ||
-            collision.gameObject.CompareTag("Border"))
-        {
-            transform.position = borderPos;
-        }
-    }
+    //private void OnTriggerStay2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("BorderTile") ||
+    //        collision.gameObject.CompareTag("Border"))
+    //    {
+    //        transform.position = borderPos;
+    //    }
+    //}
 
     private void OnTriggerExit2D(Collider2D collision)
     {

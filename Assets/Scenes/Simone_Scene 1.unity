@@ -213,7 +213,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 240840998}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.75, y: 12, z: -10}
+  m_LocalPosition: {x: 23, y: 12, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1954986755}
@@ -346,29 +346,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelTextures:
-  - {fileID: 2800000, guid: b6dd52371a8afe24aab21cf71b2ef1e9, type: 3}
-  - {fileID: 2800000, guid: b6dd52371a8afe24aab21cf71b2ef1e9, type: 3}
+  - {fileID: 2800000, guid: 44540d75dac5dc04caf228e82a4b77bc, type: 3}
+  - {fileID: 2800000, guid: 44540d75dac5dc04caf228e82a4b77bc, type: 3}
   colorToPrefabs:
   - Color: {r: 0, g: 1, b: 0, a: 1}
     Prefab: {fileID: 2119162002411902629, guid: 4205b562b51e38848a47ec3128a0298e, type: 3}
     goType: 0
   - Color: {r: 0, g: 0, b: 0, a: 1}
     Prefab: {fileID: 6295558277652975931, guid: d8b75df20ddfed24181cc6484d085667, type: 3}
-    goType: 0
+    goType: 4
   - Color: {r: 1, g: 0, b: 1, a: 1}
     Prefab: {fileID: 9133215724563705016, guid: 3a116622edfdadf4d872ec933b7ae23c, type: 3}
     goType: 2
   - Color: {r: 0, g: 0, b: 1, a: 1}
     Prefab: {fileID: 6717770747848882197, guid: 7e0bc35d48c7e554cb40e2e6ce4af875, type: 3}
     goType: 1
+  - Color: {r: 0, g: 1, b: 1, a: 1}
+    Prefab: {fileID: 4380734644556901195, guid: 02e9a5cde6af6394dafdb68617c2428a, type: 3}
+    goType: 3
   colorToTileBases:
   - tmType: 0
     Color: {r: 1, g: 1, b: 0, a: 1}
     TileBase: {fileID: 11400000, guid: 8c6e36d11e2505347aa65615c526fcd4, type: 2}
   - tmType: 1
+    Color: {r: 1, g: 0, b: 0, a: 1}
+    TileBase: {fileID: 11400000, guid: 817b5934468f14a4489e506328e26012, type: 2}
+  - tmType: 2
     Color: {r: 1, g: 1, b: 1, a: 1}
     TileBase: {fileID: 11400000, guid: ea2cd3c04ac792e489a9a0c4c5c8c173, type: 2}
   tilemaps:
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
 --- !u!4 &1214341135
