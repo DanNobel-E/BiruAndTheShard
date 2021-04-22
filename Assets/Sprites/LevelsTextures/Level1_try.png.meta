@@ -1,5 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 2113cb85d4f55f4449535228061456f8
+=======
+<<<<<<< HEAD:Assets/Sprites/LevelsTextures/Level1 1.png.meta
+guid: da7b882e2047cbe4bb386148e12db875
+=======
+guid: 2113cb85d4f55f4449535228061456f8
+>>>>>>> parent of b0de223 (Updated Levels and mechanics):Assets/Sprites/LevelsTextures/Level1_try.png.meta
+>>>>>>> parent of b0de223 (Updated Levels and mechanics)
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -32,7 +40,11 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
+<<<<<<< HEAD
     filterMode: 0
+=======
+    filterMode: -1
+>>>>>>> parent of b0de223 (Updated Levels and mechanics)
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -68,7 +80,11 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
+<<<<<<< HEAD
     textureCompression: 0
+=======
+    textureCompression: 1
+>>>>>>> parent of b0de223 (Updated Levels and mechanics)
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -80,7 +96,11 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
+<<<<<<< HEAD
     textureCompression: 0
+=======
+    textureCompression: 1
+>>>>>>> parent of b0de223 (Updated Levels and mechanics)
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0

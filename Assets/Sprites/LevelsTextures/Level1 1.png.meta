@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/Sprites/LevelsTextures/Level1 1.png.meta
 guid: da7b882e2047cbe4bb386148e12db875
+=======
+guid: 2113cb85d4f55f4449535228061456f8
+>>>>>>> parent of b0de223 (Updated Levels and mechanics):Assets/Sprites/LevelsTextures/Level1_try.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

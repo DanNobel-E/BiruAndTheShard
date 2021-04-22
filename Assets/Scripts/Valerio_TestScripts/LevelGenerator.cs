@@ -4,8 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+<<<<<<< HEAD
 public enum tmType { Grass, Stone, Last }
 public enum goType { Player, Gem, Door, Last }
+=======
+public enum TilemapType { Grass, Stone, Base, Last } //added new types to tilemapTypes and PrefabTypes
+public enum PrefabType { Player, Gem, Door, Button, Border, Enemy, Last }
+>>>>>>> parent of b0de223 (Updated Levels and mechanics)
 public class LevelGenerator : MonoBehaviour
 {
     public Texture2D[] LevelTextures;
