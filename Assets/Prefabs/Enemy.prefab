@@ -155,3 +155,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 200
+  TimerForDisactiveEnemy: 2.5
+  TimeHitAnimations: 1
