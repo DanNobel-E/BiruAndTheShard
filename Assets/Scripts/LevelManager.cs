@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TileType { Player, Gem, Stone, Iron, Enemy, Border, Door, Last}
+public enum TileType { Player, Gem, Grass, Stone, Enemy, Border, Door, Base, Last}
 public class LevelManager : MonoBehaviour
 {
 
     public Texture2D[] LevelTextures;
     public Transform Grid;
-    public int CurrentLevel=1;
+    public static int CurrentLevel=1;
     public TileColorMgr TileMgr;
     bool playerLocated;
     bool doorLocated;
@@ -76,7 +76,7 @@ public class LevelManager : MonoBehaviour
                 case TileType.Door:
                     if (!doorLocated)
                     {
-                        Vector3 dPos = new Vector3(x + 0.5f, y+1, 0);
+                        Vector3 dPos = new Vector3(x +0.75f, y+1, 0);
                         GameObject door= Instantiate(tile, dPos, Quaternion.identity, child);
 
                         int currLevel = child.GetSiblingIndex() + 1;
@@ -102,8 +102,10 @@ public class LevelManager : MonoBehaviour
     public void OnLevelChange(int index)
     {
         ResetLevel();
-        CurrentLevel = index;
-        ChangeLevel(CurrentLevel);
+        ChangeLevel(index);
+        
+        if(index!=0)
+            CurrentLevel = index;
     }
 
     private void EraseLevel()
@@ -117,8 +119,14 @@ public class LevelManager : MonoBehaviour
 
     private void ChangeLevel(int index)
     {
+        int id;
+        //Restart
+        if (index == 0)
+            id = CurrentLevel;
+        else
+            id = index;
         
-        Transform nextLevel = Grid.GetChild(index - 1);
+        Transform nextLevel = Grid.GetChild(id - 1);
 
         nextLevel.gameObject.SetActive(true);
 
