@@ -12,12 +12,16 @@ public class Pause : MonoBehaviour
         {
             Time.timeScale = 0;
             Text.SetActive(true);
-            
         }
-        else 
+        else
         {
             Time.timeScale = 1;
             Text.SetActive(false);
+            
         }
     }
+
+    
+
+
 }

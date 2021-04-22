@@ -9,7 +9,7 @@ public class EventManager : MonoBehaviour
 {
     public static UnityEvent<int> OnLevelChange;
     public static UnityEvent OnDoorActivation;
-    public static UnityEvent<int,bool> OnButtonPressed;
+    public static UnityEvent OnButtonPressed;
     public static UnityEvent OnBiruDie;
     
 
@@ -17,14 +17,11 @@ public class EventManager : MonoBehaviour
     {
         OnLevelChange = new UnityEvent<int>();
         OnDoorActivation = new UnityEvent();
-        OnButtonPressed = new UnityEvent<int, bool>();
+        OnButtonPressed = new UnityEvent();
         OnBiruDie = new UnityEvent();
        
 
     }
 
-    public void RestartLevel()
-    {
-        OnLevelChange.Invoke(0);
-    }
+    
 }

@@ -6,8 +6,6 @@ using UnityEngine;
 public class Enemy_Ctrl : MonoBehaviour
 {
     public float Speed;
-    public float TimerForDisactiveEnemy;         // float publico per decidere dopo quanti secondi disattivare il gameObject
-    public float TimeHitAnimations;
 
     Rigidbody2D rigidBody;
     SpriteRenderer spriteRenderer;
@@ -15,10 +13,6 @@ public class Enemy_Ctrl : MonoBehaviour
     Vector3 forward;
     float startGravityScale;
     bool walk = false;
-    bool collisionFromSpikes = false;    //attivo se collide con Spikes_Trap
-    float counter = 0;
-    bool collisionHit = false;
-    float counterForAnimHit = 0;
 
     void Start()
     {
@@ -37,80 +31,38 @@ public class Enemy_Ctrl : MonoBehaviour
         else
             anim.SetBool("IsWalking", false);
 
-        if (walk)
-            rigidBody.velocity = transform.right * Speed * Time.deltaTime;
-    }
-    void Update()
-    {
         RaycastEnemy();
-
-        if (collisionFromSpikes)
+        if (walk)
         {
-            counter += TimerForDisactiveEnemy * Time.deltaTime;
-            if (counter >= TimerForDisactiveEnemy)
-                transform.gameObject.SetActive(false);
-
-            //counter = 0;
+            rigidBody.velocity = transform.right * Speed * Time.deltaTime;//lasciando il deltaTime devo aumentare molto la speed, ma togliendo il deltaTime non è piuà frame dependent
         }
-
-        // set bool from collision player
-        if (collisionHit)
-        {
-            anim.SetBool("Hit", true);
-
-            counterForAnimHit += TimeHitAnimations * Time.deltaTime;
-            if (counterForAnimHit >= TimeHitAnimations)
-            {
-                anim.SetBool("Hit", false);
-                counterForAnimHit = 0;
-                collisionHit = false;
-            }
-        }
-
-        Debug.Log(counterForAnimHit);
     }
     void RaycastEnemy()
     {
         forward = (transform.right * Speed).normalized;
         Vector2 origin = new Vector2(transform.position.x + forward.x * .8f, transform.position.y * 2);
-        //RaycastHit2D ray = Physics2D.Raycast(origin, forward, .1f);
-        RaycastHit2D ray = Physics2D.Raycast(transform.position, forward, 1.0f);
-        Debug.DrawRay(transform.position, forward);
+        RaycastHit2D ray = Physics2D.Raycast(origin, forward, .1f);
+        Debug.DrawRay(origin, forward);
 
         if (ray.collider != null)
         {
             Debug.Log("ho colliso con : " + ray.collider.transform.tag + "   Collider name = " + ray.collider.transform.name);
 
-            //if (ray.collider.CompareTag("Erasable") || ray.collider.CompareTag("BorderTile") || ray.collider.CompareTag("BorderTile")/*&& distFromCollider.x <= .5f*/)
-            //{
-            //    Speed *= -1;
-            //    spriteRenderer.flipX = !spriteRenderer.flipX;
-            //}
-            if (ray.collider.CompareTag("Erasable") || ray.collider.name == "tm_Grass" || ray.collider.CompareTag("BorderTile") || ray.collider.name == "tm_Stone"/*&& distFromCollider.x <= .5f*/)
+            if (ray.collider.CompareTag("Erasable") || ray.collider.CompareTag("Border") /*&& distFromCollider.x <= .5f*/)
             {
                 Speed *= -1;
                 spriteRenderer.flipX = !spriteRenderer.flipX;
             }
         }
     }
-
-    void OnTriggerEnter2D(Collider2D col)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (col.CompareTag("Spikes_Trap") /*|| col.CompareTag("Suspended_Trap")*/)
+        if (collision.collider.CompareTag("Spikes_Trap"))
         {
             anim.SetBool("IsDeath", true);
-            collisionFromSpikes = true;                  // booleano che attiva il counter per disattivare l'Enemy dopo l'animazione di death
+            //gameObject.SetActive(false);
         }
     }
-
-    void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.collider.tag == "Player")
-        {
-            collisionHit = true;
-        }
-    }
-
     void EnableFrameWalk()
     {
         walk = true;
