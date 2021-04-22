@@ -121,6 +121,7 @@ public class LevelGenerator : MonoBehaviour
         Transform level = transform.GetChild(CurrentLevel - 1);
 
         level.gameObject.SetActive(false);
+        
 
         for (int i = 0; i < level.childCount; i++)
         {
@@ -152,16 +153,26 @@ public class LevelGenerator : MonoBehaviour
     {
         var go = new GameObject(tilemapName);
         go.layer = LayerMask.NameToLayer(layerName);
+       
         var tm = go.AddComponent<Tilemap>();
         var tr = go.AddComponent<TilemapRenderer>();
-        go.AddComponent<TilemapCollider2D>();
-
+        var tmc = go.AddComponent<TilemapCollider2D>();
+        tmc.usedByComposite = true;
+       
+        var tmrb = go.AddComponent<Rigidbody2D>();
+        tmrb.bodyType = RigidbodyType2D.Static;
+        var tmcc = go.AddComponent<CompositeCollider2D>();
         
+
+
+
         tm.tileAnchor = new Vector3(0.5f, 0.5f, 0);
         go.transform.SetParent(gridParent.transform);
-        tr.sortingLayerName = layerName;
+        tr.sortingLayerName = "Middleground";
 
         return tm;
     }
+
+    
 
 }
