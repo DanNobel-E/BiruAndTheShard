@@ -27,6 +27,4 @@ public class EventManager : MonoBehaviour
     {
         OnLevelChange.Invoke(0);
     }
-
-    
 }
