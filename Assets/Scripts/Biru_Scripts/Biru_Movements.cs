@@ -16,7 +16,7 @@ public class Biru_Movements : MonoBehaviour
     public float deathAnimSpeed;
     public bool alive = true;
     public bool oneTime = true;
-    public bool grounded;
+
     public bool onGround => CheckIfGrounded();
     public bool canJump => Input.GetKeyDown(KeyCode.UpArrow) && onGround;
     
@@ -56,7 +56,7 @@ public class Biru_Movements : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) //idk if is better to handle collsion with trigger or with collider (non ne sono molto contento, della logica in generale)
     {
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.name == "Enemy")
         {
             Debug.Log("ho colpito un nemico");
             alive = false;
@@ -69,7 +69,6 @@ public class Biru_Movements : MonoBehaviour
 
     private void Update()
     {
-        grounded = onGround;
         SpriteFlip();
         if (canJump) JumpCharacter();
         if (!alive && sr.enabled) DeathAnimMovement();
@@ -78,17 +77,15 @@ public class Biru_Movements : MonoBehaviour
     }
     void FixedUpdate()
     {
-       
         MoveCharacter(GetInput());
         ControlGravity();
     }
 
     private void ControlGravity()
     {
-        if (Mathf.Abs(rb.velocity.y) < 0.1) rb.gravityScale = 1;
-        else if (rb.velocity.y > 0) rb.gravityScale = ascendGravityScale;
+        if (rb.velocity.y > 0) rb.gravityScale = ascendGravityScale;
         else if (rb.velocity.y < 0) rb.gravityScale = fallGravityScale;
-       
+        else rb.gravityScale = 1;
     }
 
     private Vector2 GetInput() //refactor
@@ -139,8 +136,8 @@ public class Biru_Movements : MonoBehaviour
 
     private void SpriteFlip()
     {
-        if (GetInput().x > 0) sr.flipX = false;
-        else if (GetInput().x < 0) sr.flipX = true;
+        if (rb.velocity.x > 0) sr.flipX = false;
+        else if (rb.velocity.x < 0) sr.flipX = true;
     }
 
     #endregion
