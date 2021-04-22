@@ -6,14 +6,15 @@ public class DoorObj : MonoBehaviour
 {
     public int NextLevel { get; set; }
     Collider2D trigger;
-    public int LevelId { get; set; }
+    int levelId;
 
     // Start is called before the first frame update
     void Start()
     {
         trigger = GetComponent<Collider2D>();
         trigger.enabled = false;
-    
+        levelId = transform.parent.GetSiblingIndex() + 1;
+
 
     }
 
