@@ -237,111 +237,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 3
---- !u!1001 &519395778
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5706997348694283160, guid: 338223a30074ac342b3382c54ebeb2dc, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5706997348694283160, guid: 338223a30074ac342b3382c54ebeb2dc, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5706997348694283160, guid: 338223a30074ac342b3382c54ebeb2dc, type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 5706997348694283160, guid: 338223a30074ac342b3382c54ebeb2dc, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5706997348694283160, guid: 338223a30074ac342b3382c54ebeb2dc, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5706997348694283160, guid: 338223a30074ac342b3382c54ebeb2dc, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5706997348694283160, guid: 338223a30074ac342b3382c54ebeb2dc, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5706997348694283160, guid: 338223a30074ac342b3382c54ebeb2dc, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5706997348694283160, guid: 338223a30074ac342b3382c54ebeb2dc, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5706997348694283160, guid: 338223a30074ac342b3382c54ebeb2dc, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5706997348694283160, guid: 338223a30074ac342b3382c54ebeb2dc, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5706997348694283160, guid: 338223a30074ac342b3382c54ebeb2dc, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5706997348694283160, guid: 338223a30074ac342b3382c54ebeb2dc, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5706997348694283160, guid: 338223a30074ac342b3382c54ebeb2dc, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5706997348694283160, guid: 338223a30074ac342b3382c54ebeb2dc, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5706997348694283160, guid: 338223a30074ac342b3382c54ebeb2dc, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5706997348694283160, guid: 338223a30074ac342b3382c54ebeb2dc, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5706997348694283160, guid: 338223a30074ac342b3382c54ebeb2dc, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5706997348694283160, guid: 338223a30074ac342b3382c54ebeb2dc, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5706997348694283160, guid: 338223a30074ac342b3382c54ebeb2dc, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5706997348694283160, guid: 338223a30074ac342b3382c54ebeb2dc, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5706997348694283161, guid: 338223a30074ac342b3382c54ebeb2dc, type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 240841000}
-    - target: {fileID: 5706997348694283164, guid: 338223a30074ac342b3382c54ebeb2dc, type: 3}
-      propertyPath: m_Name
-      value: Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 5706997349034701931, guid: 338223a30074ac342b3382c54ebeb2dc, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1214341132}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 338223a30074ac342b3382c54ebeb2dc, type: 3}
 --- !u!1 &537468159
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,11 +346,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelTextures:
-  - {fileID: 2800000, guid: da7b882e2047cbe4bb386148e12db875, type: 3}
-  - {fileID: 2800000, guid: ecc94b43362e1244489de84715193d00, type: 3}
-  - {fileID: 2800000, guid: de4fa70e7b1412b4eb7cf396d19ebeb1, type: 3}
   - {fileID: 2800000, guid: 44540d75dac5dc04caf228e82a4b77bc, type: 3}
-  - {fileID: 2800000, guid: 0214ace704b7dd94a9a8a24661895fd7, type: 3}
+  - {fileID: 2800000, guid: 44540d75dac5dc04caf228e82a4b77bc, type: 3}
   colorToPrefabs:
   - Color: {r: 0, g: 1, b: 0, a: 1}
     Prefab: {fileID: 2119162002411902629, guid: 4205b562b51e38848a47ec3128a0298e, type: 3}
@@ -472,12 +364,6 @@ MonoBehaviour:
   - Color: {r: 0, g: 1, b: 1, a: 1}
     Prefab: {fileID: 4380734644556901195, guid: 02e9a5cde6af6394dafdb68617c2428a, type: 3}
     goType: 3
-  - Color: {r: 1, g: 0.39215687, b: 0, a: 1}
-    Prefab: {fileID: 6964353141575928539, guid: feed4724e334e9e4da55b6c8a4854d97, type: 3}
-    goType: 5
-  - Color: {r: 0.5882353, g: 0, b: 1, a: 1}
-    Prefab: {fileID: 6144114006198049534, guid: 8cc954952d8ba01449fa4c79e58eb8c9, type: 3}
-    goType: 6
   colorToTileBases:
   - tmType: 0
     Color: {r: 1, g: 1, b: 0, a: 1}

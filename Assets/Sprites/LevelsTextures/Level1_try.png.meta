@@ -1,5 +1,21 @@
 fileFormatVersion: 2
-guid: b6dd52371a8afe24aab21cf71b2ef1e9
+<<<<<<< HEAD:Assets/Sprites/LevelsTextures/Level1_try.png.meta
+<<<<<<< HEAD:Assets/Sprites/LevelsTextures/Level1_try.png.meta
+<<<<<<< HEAD
+guid: 2113cb85d4f55f4449535228061456f8
+=======
+<<<<<<< HEAD:Assets/Sprites/LevelsTextures/Level1 1.png.meta
+guid: da7b882e2047cbe4bb386148e12db875
+=======
+guid: 2113cb85d4f55f4449535228061456f8
+>>>>>>> parent of b0de223 (Updated Levels and mechanics):Assets/Sprites/LevelsTextures/Level1_try.png.meta
+>>>>>>> parent of b0de223 (Updated Levels and mechanics)
+=======
+guid: 2113cb85d4f55f4449535228061456f8
+>>>>>>> parent of b0de223 (Updated Levels and mechanics):Assets/Sprites/LevelsTextures/Level3.png.meta
+=======
+guid: 2113cb85d4f55f4449535228061456f8
+>>>>>>> parent of b0de223 (Updated Levels and mechanics):Assets/Sprites/LevelsTextures/Level3.png.meta
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -32,7 +48,11 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
+<<<<<<< HEAD
     filterMode: 0
+=======
+    filterMode: -1
+>>>>>>> parent of b0de223 (Updated Levels and mechanics)
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -46,7 +66,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -68,7 +88,11 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
+<<<<<<< HEAD
     textureCompression: 0
+=======
+    textureCompression: 1
+>>>>>>> parent of b0de223 (Updated Levels and mechanics)
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -80,7 +104,11 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
+<<<<<<< HEAD
     textureCompression: 0
+=======
+    textureCompression: 1
+>>>>>>> parent of b0de223 (Updated Levels and mechanics)
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0

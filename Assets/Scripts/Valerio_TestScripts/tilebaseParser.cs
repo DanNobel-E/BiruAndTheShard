@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 [System.Serializable]
 public class tilebaseParser
 {
-    public TilemapType tmType;
+    public tmType tmType;
     public Color Color;
     public TileBase TileBase;
     
