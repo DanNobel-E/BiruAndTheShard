@@ -156,7 +156,7 @@ MonoBehaviour:
   GUIDimensions: {x: 400, y: 300}
   GUIPosition: {x: 20, y: 20}
   GUIFontSize: 50
-  GUIColor: {r: 0, g: 0, b: 0, a: 1}
+  GUIColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &2119162002411902682
 MonoBehaviour:
   m_ObjectHideFlags: 0

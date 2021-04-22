@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public enum TilemapType { Grass, Stone, Base, Last } //added new types to tilemapTypes and PrefabTypes
-public enum PrefabType { Player, Gem, Door, Button, Border, Enemy, Last }
+public enum PrefabType { Player, Gem, Door, Button, Border, Enemy, Spike, Last }
 public class LevelGenerator : MonoBehaviour
 {
     public Texture2D[] LevelTextures;
