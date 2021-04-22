@@ -11,6 +11,9 @@ public enum goType { Player, Gem, Door, Last }
 public enum TilemapType { Grass, Stone, Base, Last } //added new types to tilemapTypes and PrefabTypes
 public enum PrefabType { Player, Gem, Door, Button, Border, Enemy, Last }
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of b0de223 (Updated Levels and mechanics)
+=======
 >>>>>>> parent of b0de223 (Updated Levels and mechanics)
 =======
 >>>>>>> parent of b0de223 (Updated Levels and mechanics)
