@@ -146,7 +146,6 @@ MonoBehaviour:
   deathAnimSpeed: 0
   alive: 1
   oneTime: 1
-  grounded: 0
   boxAngle: 0
   boxOffset: {x: -0.06, y: -0.83}
   boxDimensions: {x: 0.62, y: 0.33}
