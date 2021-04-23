@@ -154,6 +154,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8627358c7271d64387a32a389ff9006, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 200
+  Speed: 150
   TimerForDisactiveEnemy: 2.5
   TimeHitAnimations: 1

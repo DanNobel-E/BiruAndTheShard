@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 4380734644556901189}
   - component: {fileID: 3956738902080545180}
   m_Layer: 6
-  m_Name: Button
+  m_Name: button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -180,8 +180,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.02, y: 0.49}
-  m_Size: {x: 1.26, y: 0.14}
+  m_Offset: {x: 1, y: 0.49}
+  m_Size: {x: 1.29, y: 0.14}
   m_Direction: 1
 --- !u!114 &4380734644556901189
 MonoBehaviour:

@@ -23,7 +23,7 @@ public class EventManager : MonoBehaviour
 
     }
 
-    public void RestartLevel()
+    public static void RestartLevel()
     {
         OnLevelChange.Invoke(0);
     }
