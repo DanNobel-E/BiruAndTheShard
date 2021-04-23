@@ -180,7 +180,15 @@ public class LevelGenerator : MonoBehaviour
         go.layer = LayerMask.NameToLayer(layerName);
         var tm = go.AddComponent<Tilemap>();
         var tr = go.AddComponent<TilemapRenderer>();
-        go.AddComponent<TilemapCollider2D>();
+        var rb = go.AddComponent<Rigidbody2D>();
+        rb.bodyType = RigidbodyType2D.Static;
+        var tmc = go.AddComponent<TilemapCollider2D>();
+        tmc.usedByComposite = true;
+
+        var cc = go.AddComponent<CompositeCollider2D>();
+
+        
+
 
         //added tile manager script to tilemaps game objects
         var tmgr = go.AddComponent<TilemapMgr>();
