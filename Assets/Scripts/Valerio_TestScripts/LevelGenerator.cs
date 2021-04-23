@@ -110,6 +110,11 @@ public class LevelGenerator : MonoBehaviour
                                 ButtonLogic b = button.GetComponent<ButtonLogic>();
                                 b.LevelId = index + 1; 
                                 break;
+                            case PrefabType.Enemy: //managed enemy spawning
+                                GameObject enemy = Instantiate(item.Prefab, new Vector3(x, y, 0), Quaternion.identity, newLevel.transform);
+                                Enemy_Ctrl e = enemy.GetComponent<Enemy_Ctrl>();
+                                e.LevelId = index + 1;
+                                break;
                             default:
                                 Instantiate(item.Prefab, new Vector3(x, y, 0), Quaternion.identity, newLevel.transform);
                                 break;

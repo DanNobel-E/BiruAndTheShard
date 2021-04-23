@@ -5,6 +5,10 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Enemy_Ctrl : MonoBehaviour
 {
+    //Level Generator
+    Vector3 startPos;
+    public int LevelId { get; set; }
+
     public float Speed;
     public float TimerForDisactiveEnemy;         // float publico per decidere dopo quanti secondi disattivare il gameObject
     public float TimeHitAnimations;
@@ -22,6 +26,8 @@ public class Enemy_Ctrl : MonoBehaviour
 
     void Start()
     {
+        startPos = transform.position;
+
         rigidBody = transform.GetComponent<Rigidbody2D>();
         spriteRenderer = transform.GetComponent<SpriteRenderer>();
         anim = transform.GetComponent<Animator>();
@@ -121,4 +127,28 @@ public class Enemy_Ctrl : MonoBehaviour
         walk = false;
         rigidBody.gravityScale = startGravityScale;
     }
+
+
+    private void OnEnable()
+    {
+        EventManager.OnLevelChange.AddListener(OnLevelChange);
+
+    }
+
+    private void OnDisable()
+    {
+        EventManager.OnLevelChange.RemoveListener(OnLevelChange);
+
+    }
+
+
+    public void OnLevelChange(int index)
+    {
+        transform.position = startPos;
+
+        if (index != 0)
+            gameObject.SetActive(false);
+
+    }
+
 }
