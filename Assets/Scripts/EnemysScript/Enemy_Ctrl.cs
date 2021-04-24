@@ -20,9 +20,11 @@ public class Enemy_Ctrl : MonoBehaviour
     float startGravityScale;
     bool walk = false;
     bool collisionFromSpikes = false;    //attivo se collide con Spikes_Trap
-    float counter = 0;
     bool collisionHit = false;
+    float counter = 0;
     float counterForAnimHit = 0;
+    float counterForActive = 0;
+    float timeForActive; /*= Random.Range(0, 4);*/
 
     void Start()
     {
@@ -32,6 +34,10 @@ public class Enemy_Ctrl : MonoBehaviour
         spriteRenderer = transform.GetComponent<SpriteRenderer>();
         anim = transform.GetComponent<Animator>();
         startGravityScale = rigidBody.gravityScale;
+
+        //Time for active enemy from start level
+        //counterForActive = 0;
+        timeForActive = Random.Range(0, 5);
     }
 
     // Update is called once per frame
@@ -43,11 +49,17 @@ public class Enemy_Ctrl : MonoBehaviour
         else
             anim.SetBool("IsWalking", false);
 
-        if (walk)
-            rigidBody.velocity = transform.right * Speed * Time.deltaTime;
+
+        if (walk )
+        {
+            //if(counterForActive >= timeForActive)
+                rigidBody.velocity = transform.right * Speed * Time.deltaTime;
+        }
     }
     void Update()
     {
+        //counterForActive += Time.deltaTime;
+
         RaycastEnemy();
 
         if (collisionFromSpikes)
@@ -63,8 +75,8 @@ public class Enemy_Ctrl : MonoBehaviour
         if (collisionHit)
         {
             anim.SetBool("Hit", true);
-
             counterForAnimHit += TimeHitAnimations * Time.deltaTime;
+
             if (counterForAnimHit >= TimeHitAnimations)
             {
                 anim.SetBool("Hit", false);
@@ -72,13 +84,11 @@ public class Enemy_Ctrl : MonoBehaviour
                 collisionHit = false;
             }
         }
-
-        Debug.Log(counterForAnimHit);
     }
     void RaycastEnemy()
     {
         forward = (transform.right * Speed).normalized;
-        Vector2 origin = new Vector2(transform.position.x + forward.x * .8f, transform.position.y * 2);
+        //Vector2 origin = new Vector2(transform.position.x + forward.x * .8f, transform.position.y * 2);
         //RaycastHit2D ray = Physics2D.Raycast(origin, forward, .1f);
         RaycastHit2D ray = Physics2D.Raycast(transform.position, forward, 1.0f);
         Debug.DrawRay(transform.position, forward);
@@ -87,22 +97,19 @@ public class Enemy_Ctrl : MonoBehaviour
         {
             Debug.Log("ho colliso con : " + ray.collider.transform.tag + "   Collider name = " + ray.collider.transform.name);
 
-            //if (ray.collider.CompareTag("Erasable") || ray.collider.CompareTag("BorderTile") || ray.collider.CompareTag("BorderTile")/*&& distFromCollider.x <= .5f*/)
-            //{
-            //    Speed *= -1;
-            //    spriteRenderer.flipX = !spriteRenderer.flipX;
-            //}
-            if (ray.collider.CompareTag("Erasable") || ray.collider.name == "tm_Grass" || ray.collider.CompareTag("BorderTile") || ray.collider.name == "tm_Stone"/*&& distFromCollider.x <= .5f*/)
+            if (ray.collider.CompareTag("Erasable")
+                || ray.collider.CompareTag("BorderTile")
+                || ray.collider.name == "tm_Grass"
+                || ray.collider.name == "tm_Stone")
             {
-                Speed *= -1;
-                spriteRenderer.flipX = !spriteRenderer.flipX;
+                InvertSpeed();
             }
         }
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("Spikes_Trap") /*|| col.CompareTag("Suspended_Trap")*/)
+        if (col.CompareTag("Spikes_Trap"))
         {
             anim.SetBool("IsDeath", true);
             collisionFromSpikes = true;                  // booleano che attiva il counter per disattivare l'Enemy dopo l'animazione di death
@@ -115,7 +122,13 @@ public class Enemy_Ctrl : MonoBehaviour
         {
             collisionHit = true;
         }
+
+        if (col.collider.tag == "Enemy")
+        {
+            InvertSpeed();
+        }
     }
+
 
     void EnableFrameWalk()
     {
@@ -127,12 +140,15 @@ public class Enemy_Ctrl : MonoBehaviour
         walk = false;
         rigidBody.gravityScale = startGravityScale;
     }
-
+    void InvertSpeed()
+    {
+        Speed *= -1;
+        spriteRenderer.flipX = !spriteRenderer.flipX;
+    }
 
     private void OnEnable()
     {
         EventManager.OnLevelChange.AddListener(OnLevelChange);
-
     }
 
     private void OnDisable()
@@ -148,7 +164,6 @@ public class Enemy_Ctrl : MonoBehaviour
 
         if (index != 0)
             gameObject.SetActive(false);
-
     }
 
 }
