@@ -60,16 +60,25 @@ public class Biru_Movements : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other) //idk if is better to handle collsion with trigger or with collider (non ne sono molto contento, della logica in generale)
     {
-        if (other.gameObject.name == "Enemy")
+        if (other.gameObject.CompareTag("Enemy"))
         {
-            Debug.Log("ho colpito un nemico");
+            //Debug.Log("ho colpito un nemico");
+
             alive = false;
-            
             rb.simulated = false;
         }
     
     }
-    
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Border") || collision.CompareTag("Spikes_Trap"))
+        {
+            alive = false;
+            rb.simulated = false;
+        }
+    }
+
 
     private void Update()
     {

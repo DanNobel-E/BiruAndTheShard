@@ -6,12 +6,13 @@ public class PlayerMgr : MonoBehaviour
 {
     Vector3 startPos;
     public int LevelId { get; set; }
+    BiruAnimatorController anim;
 
 
     void Start()
     {
         startPos = transform.position;
-    
+        anim = GetComponent<BiruAnimatorController>();
     }
 
     private void OnEnable()
@@ -36,12 +37,8 @@ public class PlayerMgr : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Border"))
-        {
-            EventManager.OnLevelChange.Invoke(0);
-        }
-    }
+   
+
+  
 
 }

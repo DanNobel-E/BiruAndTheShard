@@ -23,8 +23,13 @@ public class BiruAnimatorController : MonoBehaviour
     bool runAnim => Mathf.Abs(rb.velocity.x) > 0.1 && bm.onGround;
     bool fallAnim => rb.velocity.y <= 0.1f;
     bool JumpAnim => rb.velocity.y >= 0.1f;
-    
 
+    [Header("Animations")]
+
+    public AnimationClip DeathClip;
+    float deathDuration;
+    bool isDying;
+    float deathTimer=0;
     
 
   
@@ -34,13 +39,28 @@ public class BiruAnimatorController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         bm = GetComponent<Biru_Movements>();
-       
+        deathDuration = DeathClip.length;
     }
 
 
     void Update()
     {
         AnimationManager();
+
+        if (isDying)
+        {
+            deathTimer += Time.deltaTime;
+
+            if (deathTimer >= deathDuration)
+            {
+                EventManager.RestartLevel();
+                deathTimer = 0;
+                isDying = false;
+                bm.alive = true;
+                rb.simulated = true;
+            }
+
+        }
     }   
     
 
@@ -53,6 +73,11 @@ public class BiruAnimatorController : MonoBehaviour
         animator.Play(newState.ToString());
 
         currentState = newState;
+
+        if (newState == biruAnimState.Biru_Die && !isDying)
+            isDying = true;
+        
+
     }
 
     void AnimationManager()
