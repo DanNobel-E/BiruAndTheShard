@@ -155,6 +155,7 @@ public class Gem : MonoBehaviour, IPointerClickHandler
     {
         transform.position = startPos;
         gameObject.SetActive(false);
+        Cursor.visible = true;
 
     }
 
