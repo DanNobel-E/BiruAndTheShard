@@ -74,6 +74,7 @@ public class Enemy_Ctrl : MonoBehaviour
         // set bool from collision player
         if (collisionHit)
         {
+            AddForce();
             anim.SetBool("Hit", true);
             counterForAnimHit += TimeHitAnimations * Time.deltaTime;
 
@@ -106,6 +107,11 @@ public class Enemy_Ctrl : MonoBehaviour
             }
         }
     }
+    void AddForce()
+    {
+        rigidBody.velocity = Vector2.zero;
+        rigidBody.AddForce(new Vector2(.5f, .5f) * (Speed * -1), ForceMode2D.Force);
+    }
 
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -122,7 +128,6 @@ public class Enemy_Ctrl : MonoBehaviour
         {
             collisionHit = true;
         }
-
         if (col.collider.tag == "Enemy")
         {
             InvertSpeed();
