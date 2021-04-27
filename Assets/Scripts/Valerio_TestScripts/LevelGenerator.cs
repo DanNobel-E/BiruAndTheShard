@@ -137,6 +137,7 @@ public class LevelGenerator : MonoBehaviour
     {
         ResetLevel();
         ChangeLevel(index);
+        Cursor.visible = true;
 
         if (index != 0)
             CurrentLevel = index;

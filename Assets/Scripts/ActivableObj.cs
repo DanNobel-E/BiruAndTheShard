@@ -39,19 +39,23 @@ public class ActivableObj : MonoBehaviour
 
     void Update(){
 
-        if(gemInside){
+        if (gemInside)
+        {
 
-        if(Input.GetMouseButtonDown(0)){
-            press=true;
-        }else if(Input.GetMouseButtonUp(0)){
-            press=false;
-        }
+            if (Input.GetMouseButtonDown(0))
+            {
+                press = true;
+            }
+            else if (Input.GetMouseButtonUp(0))
+            {
+                press = false;
+            }
         }
     }
     public void OnLevelChange(int index)
     {
         anim.SetBool(activationParam, false);
-
+        press = false;
     }
 
 

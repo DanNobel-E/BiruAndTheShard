@@ -55,8 +55,6 @@ public class Gem : MonoBehaviour, IPointerClickHandler
         if (active)
         {
             //EventManager.OnLevelChange.RemoveListener(OnLevelChange);
-            if (index == 0)
-                transform.position = startPos;
 
             //Manage tile restoring on level change
             erasableTilemap.ClearAllTiles();
@@ -68,6 +66,13 @@ public class Gem : MonoBehaviour, IPointerClickHandler
             draggable = false;
             doorActive = false;
             active = false;
+
+            if (index == 0)
+            {
+                transform.position = startPos;
+                gameObject.SetActive(true);
+            }
+            
 
         }
         else
@@ -161,15 +166,7 @@ public class Gem : MonoBehaviour, IPointerClickHandler
 
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //--------------------testing------------------//
-        //if (collision.gameObject.CompareTag("Erasable"))
-        //{
-        //    collision.gameObject.GetComponent<ErasableObj>().Erase();
-        //}
-
-    }
+ 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -186,14 +183,6 @@ public class Gem : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    //private void OnTriggerStay2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("BorderTile") ||
-    //        collision.gameObject.CompareTag("Border"))
-    //    {
-    //        transform.position = borderPos;
-    //    }
-    //}
 
     private void OnTriggerExit2D(Collider2D collision)
     {
