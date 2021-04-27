@@ -11,6 +11,7 @@ public class Biru_Movements : MonoBehaviour
     Rigidbody2D rb;
     SpriteRenderer sr;
     public ParticleSystem ps;
+    Animator camAnimator;
 
     [Header("DebugVariables")]
     public LayerMask GroundLayer;
@@ -53,7 +54,7 @@ public class Biru_Movements : MonoBehaviour
     {
         rb=GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
-        
+        camAnimator = Camera.main.GetComponent<Animator>();
       
     }
 
@@ -111,6 +112,7 @@ public class Biru_Movements : MonoBehaviour
     {
         rb.velocity += Vector2.up * jumpForce;
         ps.Play();
+        camAnimator.SetTrigger("shake");
     }
 
     public bool CheckIfGrounded()

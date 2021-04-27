@@ -135,6 +135,7 @@ GameObject:
   - component: {fileID: 240841000}
   - component: {fileID: 240840999}
   - component: {fileID: 240841002}
+  - component: {fileID: 240841003}
   m_Layer: 0
   m_Name: Pixel Perfect Camera
   m_TagString: MainCamera
@@ -238,6 +239,25 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_MaxRayIntersections: 3
+--- !u!95 &240841003
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240840998}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 89db3b7bce88ef24c93f80d299107f70, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &416244661 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4694539637253750650, guid: 3cb649ceca01d2c4198a2ec2a2b7be38, type: 3}
@@ -583,6 +603,7 @@ GameObject:
   - component: {fileID: 1214341135}
   - component: {fileID: 1214341132}
   - component: {fileID: 1214341133}
+  - component: {fileID: 1214341134}
   m_Layer: 0
   m_Name: Game
   m_TagString: Untagged
@@ -656,6 +677,19 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &1214341134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1214341131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83c076659f5cf02468159216ccdcc5ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  t: {fileID: 2800000, guid: 01386498c2103a649bfe80fe1bfceb84, type: 3}
 --- !u!4 &1214341135
 Transform:
   m_ObjectHideFlags: 0

@@ -87,9 +87,11 @@ public class Gem : MonoBehaviour, IPointerClickHandler
             draggable = true;
             movable = true;
             active = true;
+            Cursor.visible = false;
         }
         else
         {
+            Cursor.visible = true;
             if (!doorActive)
             {
                 ResetGem();
