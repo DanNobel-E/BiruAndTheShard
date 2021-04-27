@@ -10,12 +10,15 @@ public class Biru_Movements : MonoBehaviour
     [Header("Components")]
     Rigidbody2D rb;
     SpriteRenderer sr;
+    public ParticleSystem ps;
+    Animator camAnimator;
 
     [Header("DebugVariables")]
     public LayerMask GroundLayer;
     public float deathAnimSpeed;
     public bool alive = true;
     public bool oneTime = true;
+    public bool facingRight = true;
 
     public bool onGround => CheckIfGrounded();
     public bool canJump => Input.GetKeyDown(KeyCode.UpArrow) && onGround;
@@ -51,6 +54,7 @@ public class Biru_Movements : MonoBehaviour
     {
         rb=GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        camAnimator = Camera.main.GetComponent<Animator>();
       
     }
 
@@ -107,6 +111,8 @@ public class Biru_Movements : MonoBehaviour
     private void JumpCharacter()
     {
         rb.velocity += Vector2.up * jumpForce;
+        ps.Play();
+        camAnimator.SetTrigger("shake");
     }
 
     public bool CheckIfGrounded()
@@ -136,9 +142,24 @@ public class Biru_Movements : MonoBehaviour
 
     private void SpriteFlip()
     {
-        if (GetInput().x > 0) sr.flipX = false;
-        else if (GetInput().x < 0) sr.flipX = true;
+        if (GetInput().x>0.1f && !facingRight)
+        {
+            FlipCharacter();
+        }
+        else if (GetInput().x < -0.1f && facingRight)
+        {
+            FlipCharacter();
+        }
+       
     }
 
+    private void FlipCharacter()
+    {
+        facingRight = !facingRight;
+        transform.Rotate(Vector3.up,180f);
+        ps.Play();
+    }
+
+  
     #endregion
 }
