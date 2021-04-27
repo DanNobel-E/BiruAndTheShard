@@ -4984,6 +4984,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   BiruDead: 0
+  DeathClip: {fileID: 7400000, guid: bc5ae623ebfb34346a0f0fdde6f5994a, type: 2}
 --- !u!114 &-7146088225616408726
 MonoBehaviour:
   m_ObjectHideFlags: 0
