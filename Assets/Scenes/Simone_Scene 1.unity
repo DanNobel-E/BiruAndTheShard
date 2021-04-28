@@ -894,10 +894,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelTextures:
   - {fileID: 2800000, guid: da7b882e2047cbe4bb386148e12db875, type: 3}
-  - {fileID: 2800000, guid: ecc94b43362e1244489de84715193d00, type: 3}
+  - {fileID: 2800000, guid: 05eaa0f403e8c22468979ff773953d5c, type: 3}
   - {fileID: 2800000, guid: de4fa70e7b1412b4eb7cf396d19ebeb1, type: 3}
   - {fileID: 2800000, guid: 44540d75dac5dc04caf228e82a4b77bc, type: 3}
   - {fileID: 2800000, guid: 0214ace704b7dd94a9a8a24661895fd7, type: 3}
+  - {fileID: 2800000, guid: 05eaa0f403e8c22468979ff773953d5c, type: 3}
   colorToPrefabs:
   - Color: {r: 0, g: 1, b: 0, a: 1}
     Prefab: {fileID: 2119162002411902629, guid: 4205b562b51e38848a47ec3128a0298e, type: 3}

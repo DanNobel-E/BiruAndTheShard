@@ -11,14 +11,21 @@ public class ButtonLogic : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        pressed = true;
-        EventManager.OnButtonPressed.Invoke(LevelId, pressed);
+        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
+        {
+
+            pressed = true;
+            EventManager.OnButtonPressed.Invoke(LevelId, pressed);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        pressed = false;
-        EventManager.OnButtonPressed.Invoke(LevelId, pressed);
+        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
+        {
+            pressed = false;
+            EventManager.OnButtonPressed.Invoke(LevelId, pressed);
+        }
     }
 
 }

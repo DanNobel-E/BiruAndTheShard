@@ -18,13 +18,34 @@ public class ButtonAnimatorController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player" || other.tag == "Enemy") UpdateAnimationState(buttonAnimState.Button_Pressed);
+        if (other.CompareTag("Player") || other.CompareTag("Enemy")) 
+            UpdateAnimationState(buttonAnimState.Button_Pressed);
     }
     private void OnTriggerExit2D(Collider2D other)
     {
-        UpdateAnimationState(buttonAnimState.Button_Idle);
+        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
+            UpdateAnimationState(buttonAnimState.Button_Idle);
     }
 
+    private void OnEnable()
+    {
+        EventManager.OnLevelChange.AddListener(OnLevelChange);
+
+    }
+
+    private void OnDisable()
+    {
+        EventManager.OnLevelChange.RemoveListener(OnLevelChange);
+
+    }
+
+
+    public void OnLevelChange(int index)
+    {
+        animator.Play(buttonAnimState.Button_Idle.ToString());
+
+        currentState = buttonAnimState.Button_Idle;
+    }
     void UpdateAnimationState(buttonAnimState newState)
     {
         //stop the same animation from interrupting itself
