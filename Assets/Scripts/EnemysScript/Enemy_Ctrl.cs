@@ -28,7 +28,6 @@ public class Enemy_Ctrl : MonoBehaviour
 
     void Start()
     {
-        startPos = transform.position;
 
         rigidBody = transform.GetComponent<Rigidbody2D>();
         spriteRenderer = transform.GetComponent<SpriteRenderer>();
@@ -64,12 +63,13 @@ public class Enemy_Ctrl : MonoBehaviour
 
         if (collisionFromSpikes)
         {
-            counter += TimerForDisactiveEnemy * Time.deltaTime;
+            counter +=  Time.deltaTime;
             if (counter >= TimerForDisactiveEnemy)
+            {
                 transform.gameObject.SetActive(false);
-
-            counter = 0;
-            collisionFromSpikes = false;
+                counter = 0;
+                collisionFromSpikes = false;
+            }
         }
 
         // set bool from collision player
@@ -154,24 +154,33 @@ public class Enemy_Ctrl : MonoBehaviour
 
     private void OnEnable()
     {
+        if (startPos == Vector3.zero)
+            startPos = transform.position;
         EventManager.OnLevelChange.AddListener(OnLevelChange);
     }
 
-    private void OnDisable()
-    {
-        EventManager.OnLevelChange.RemoveListener(OnLevelChange);
-
-    }
 
 
     public void OnLevelChange(int index)
     {
+        
         transform.position = startPos;
 
         if (index == 0)
+        {
             gameObject.SetActive(true);
+        }
         else
-            gameObject.SetActive(false);
+        {
+            if (index != LevelId)
+            {
+                EventManager.OnLevelChange.RemoveListener(OnLevelChange);
+                gameObject.SetActive(false);
+            }
+            else
+                gameObject.SetActive(true);
+
+        }
     }
 
 }
