@@ -4783,7 +4783,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 871601585
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: -5
   m_RenderMode: 0
   m_SortMode: 0
@@ -4886,7 +4886,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 871601585
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: -4099418257374492983, guid: 6d83b8c6758cc7d4b8f8030a7adce65b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4955,7 +4955,7 @@ MonoBehaviour:
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
-  deathAnimSpeed: 0
+  deathAnimSpeed: 1
   alive: 1
   oneTime: 1
   facingRight: 1
@@ -4970,6 +4970,7 @@ MonoBehaviour:
   GUIPosition: {x: 20, y: 20}
   GUIFontSize: 50
   GUIColor: {r: 0, g: 0, b: 0, a: 0}
+  notErasableTilemap: {fileID: 0}
 --- !u!114 &2119162002411902682
 MonoBehaviour:
   m_ObjectHideFlags: 0
