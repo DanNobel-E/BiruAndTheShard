@@ -68,7 +68,8 @@ public class Enemy_Ctrl : MonoBehaviour
             if (counter >= TimerForDisactiveEnemy)
                 transform.gameObject.SetActive(false);
 
-            //counter = 0;
+            counter = 0;
+            collisionFromSpikes = false;
         }
 
         // set bool from collision player
@@ -115,7 +116,7 @@ public class Enemy_Ctrl : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("Spikes_Trap"))
+        if (col.CompareTag("Border") || col.CompareTag("Spikes_Trap"))
         {
             anim.SetBool("IsDeath", true);
             collisionFromSpikes = true;                  // booleano che attiva il counter per disattivare l'Enemy dopo l'animazione di death
@@ -167,7 +168,9 @@ public class Enemy_Ctrl : MonoBehaviour
     {
         transform.position = startPos;
 
-        if (index != 0)
+        if (index == 0)
+            gameObject.SetActive(true);
+        else
             gameObject.SetActive(false);
     }
 
