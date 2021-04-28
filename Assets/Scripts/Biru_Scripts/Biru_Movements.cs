@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Collider))]
@@ -48,7 +50,9 @@ public class Biru_Movements : MonoBehaviour
     public Vector2 GUIPosition= new Vector2(20,20);
     public int GUIFontSize;
     public Color GUIColor;
-   
+
+    public Tilemap notErasableTilemap;
+
 
     void Start()
     {
@@ -74,20 +78,41 @@ public class Biru_Movements : MonoBehaviour
     {
         if (collision.CompareTag("Border") || collision.CompareTag("Spikes_Trap"))
         {
-            alive = false;
-            rb.simulated = false;
+            KillPlayer();
         }
     }
 
+    public void KillPlayer()
+    {
+        alive = false;
+        rb.simulated = false;
+    }
 
     private void Update()
     {
         SpriteFlip();
         if (canJump) JumpCharacter();
         if (!alive && sr.enabled) DeathAnimMovement();
-        
+
+        ManageNotErasable();
 
     }
+
+    public void ManageNotErasable()
+    {
+        if (notErasableTilemap.isActiveAndEnabled)
+        {
+            Vector3Int pPosNE = notErasableTilemap.WorldToCell(transform.position);
+            if (notErasableTilemap.GetTile(pPosNE) != null)
+            {
+                KillPlayer();
+
+            }
+
+
+        }
+    }
+
     void FixedUpdate()
     {
         MoveCharacter(GetInput());

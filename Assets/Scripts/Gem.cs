@@ -20,7 +20,6 @@ public class Gem : MonoBehaviour, IPointerClickHandler
     bool movable;
     bool doorActive;
     Vector3 startPos;
-    Vector3 borderPos;
 
     static Transform screenHandlerLD, screenHandlerUR;
 
@@ -185,7 +184,6 @@ public class Gem : MonoBehaviour, IPointerClickHandler
         if (collision.gameObject.CompareTag("BorderTile") ||
             collision.gameObject.CompareTag("Border"))
         {
-            borderPos = transform.position;
             movable = false;
         } else if (collision.gameObject.CompareTag("Slot"))
         {

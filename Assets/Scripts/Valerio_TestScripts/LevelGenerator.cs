@@ -104,6 +104,8 @@ public class LevelGenerator : MonoBehaviour
                                 GameObject player= Instantiate(item.Prefab, new Vector3(x, y, 0), Quaternion.identity, newLevel.transform);
                                 PlayerMgr p = player.GetComponent<PlayerMgr>();
                                 p.LevelId = index + 1;
+                                Biru_Movements bm= player.GetComponent<Biru_Movements>();
+                                bm.notErasableTilemap=tilemaps[1]; //added not erasable tilemap to gem
                                 break;
                             case PrefabType.Button: //managed buttons spawning
                                 GameObject button = Instantiate(item.Prefab, new Vector3(x, y, 0), Quaternion.identity, newLevel.transform);

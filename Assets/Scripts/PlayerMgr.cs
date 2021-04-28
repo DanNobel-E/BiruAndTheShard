@@ -6,13 +6,14 @@ public class PlayerMgr : MonoBehaviour
 {
     Vector3 startPos;
     public int LevelId { get; set; }
-    BiruAnimatorController anim;
+
+
+
 
 
     void Start()
     {
         startPos = transform.position;
-        anim = GetComponent<BiruAnimatorController>();
     }
 
     private void OnEnable()
@@ -27,7 +28,6 @@ public class PlayerMgr : MonoBehaviour
 
     }
 
-    
     public void OnLevelChange(int index)
     {
         transform.position = startPos;
