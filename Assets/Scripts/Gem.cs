@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.Tilemaps;
-using UnityEngine.Events;
+using UnityEngine.U2D;
 
 
 public class Gem : MonoBehaviour, IPointerClickHandler
@@ -25,6 +26,9 @@ public class Gem : MonoBehaviour, IPointerClickHandler
 
     static Transform screenHandlerLD, screenHandlerUR;
 
+    
+    
+
     private void Start()
     {
         startPos = transform.position;
@@ -32,6 +36,7 @@ public class Gem : MonoBehaviour, IPointerClickHandler
         screenHandlerLD = Camera.main.transform.GetChild(0);
         screenHandlerUR = Camera.main.transform.GetChild(1);
 
+       
     }
 
     private void OnEnable()
@@ -85,6 +90,7 @@ public class Gem : MonoBehaviour, IPointerClickHandler
     
     }
 
+    
     public void OnPointerClick(PointerEventData eventData)
     {
         if (!draggable)
@@ -140,7 +146,6 @@ public class Gem : MonoBehaviour, IPointerClickHandler
 
             }
         }
-        
 
         
     }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DoorObj : MonoBehaviour
 {
+    public Color ActivationColor;
     public int NextLevel { get; set; }
     Collider2D trigger;
     public int LevelId { get; set; }
@@ -33,12 +34,21 @@ public class DoorObj : MonoBehaviour
     public void OnDoorActivation()
     {
         trigger.enabled = true;
+        LightPulse lp = GetComponentInChildren<LightPulse>();
+        lp.ChangeColor(ActivationColor);
+        lp.PulseDuration = 1;
+        lp.ChangeRadius(2,7);
 
     }
 
     public void OnLevelChange(int index)
     {
         trigger.enabled = false;
+        LightPulse lp = GetComponentInChildren<LightPulse>();
+        lp.ChangeColor(lp.DefaultColor);
+        lp.PulseDuration = lp.DefaultDuration;
+        lp.ChangeRadius(lp.DefaultInnerRadius, lp.DefaultOuterRadius);
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
