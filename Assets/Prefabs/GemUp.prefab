@@ -139,7 +139,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   erasableTilemap: {fileID: 0}
   notErasableTilemap: {fileID: 0}
-<<<<<<< Updated upstream
   Offset: {x: 0, y: 0, z: 0}
   LerpFactor: 10
 --- !u!96 &7436433493551651746
@@ -303,8 +302,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PulseDuration: 0.75
-=======
-  ps: {fileID: 4867417447099184141, guid: 44b22377418fec94e8b4185a4fbcecb5, type: 3}
-  Offset: {x: 0, y: 0, z: 0}
-  LerpFactor: 100
->>>>>>> Stashed changes

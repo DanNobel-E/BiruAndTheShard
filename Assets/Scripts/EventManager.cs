@@ -11,8 +11,7 @@ public class EventManager : MonoBehaviour
     public static UnityEvent OnDoorActivation;
     public static UnityEvent<int,bool> OnButtonPressed;
     public static UnityEvent OnBiruDie;
-    public static UnityEvent<Vector3> OnEraseTile;
-
+    
 
     void Awake()
     {
@@ -20,7 +19,7 @@ public class EventManager : MonoBehaviour
         OnDoorActivation = new UnityEvent();
         OnButtonPressed = new UnityEvent<int, bool>();
         OnBiruDie = new UnityEvent();
-        OnEraseTile = new UnityEvent<Vector3>();
+       
 
     }
 
