@@ -132,14 +132,22 @@ public class Gem : MonoBehaviour, IPointerClickHandler
 
                 Vector3Int gemPosE = erasableTilemap.WorldToCell(transform.position);
                 if (erasableTilemap.GetTile(gemPosE) != null)
+                {
                     erasableTilemap.SetTile(gemPosE, null);
+                    EventManager.OnEraseTile.Invoke(transform.position);
+                }
+                  
 
                 //Managing not erasable tilemap collisions
                 if (notErasableTilemap.isActiveAndEnabled)
                 {
                     Vector3Int gemPosNE = notErasableTilemap.WorldToCell(transform.position);
                     if (notErasableTilemap.GetTile(gemPosNE) != null)
+                    {
                         ResetGem();
+                        
+                    }
+                      
 
                 }
 
