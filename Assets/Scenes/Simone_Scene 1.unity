@@ -571,6 +571,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 240841001}
     m_Modifications:
+    - target: {fileID: 1081664368670170294, guid: 3cb649ceca01d2c4198a2ec2a2b7be38, type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1994611577382806585, guid: 3cb649ceca01d2c4198a2ec2a2b7be38, type: 3}
       propertyPath: m_Name
       value: BgLights
