@@ -12,7 +12,7 @@ public class Gem : MonoBehaviour, IPointerClickHandler
     #region Valerio
     public Tilemap erasableTilemap;
     public Tilemap notErasableTilemap;
-
+   
     #endregion
     public Vector3 Offset = Vector3.zero;
     public float LerpFactor = 1;
@@ -132,7 +132,12 @@ public class Gem : MonoBehaviour, IPointerClickHandler
 
                 Vector3Int gemPosE = erasableTilemap.WorldToCell(transform.position);
                 if (erasableTilemap.GetTile(gemPosE) != null)
+                {
                     erasableTilemap.SetTile(gemPosE, null);
+                    EventManager.OnEraseTile.Invoke(transform.position);
+                    
+                }
+                   
 
                 //Managing not erasable tilemap collisions
                 if (notErasableTilemap.isActiveAndEnabled)

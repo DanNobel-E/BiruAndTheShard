@@ -21,7 +21,7 @@ public class Biru_Movements : MonoBehaviour
     public bool facingRight = true;
 
     public bool onGround => CheckIfGrounded();
-    public bool canJump => Input.GetKeyDown(KeyCode.UpArrow) && onGround;
+    public bool canJump => (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && onGround;
     
 
     public float boxAngle;
