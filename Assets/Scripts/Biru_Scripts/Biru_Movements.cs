@@ -15,13 +15,13 @@ public class Biru_Movements : MonoBehaviour
 
     [Header("DebugVariables")]
     public LayerMask GroundLayer;
-    public float deathAnimSpeed;
+    public float deathAnimSpeed =1f;
     public bool alive = true;
     public bool oneTime = true;
     public bool facingRight = true;
 
     public bool onGround => CheckIfGrounded();
-    public bool canJump => Input.GetKeyDown(KeyCode.UpArrow) && onGround;
+    public bool canJump => (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && onGround;
     
 
     public float boxAngle;
