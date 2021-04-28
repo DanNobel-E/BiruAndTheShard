@@ -69,6 +69,7 @@ public class Enemy_Ctrl : MonoBehaviour
                 transform.gameObject.SetActive(false);
                 counter = 0;
                 collisionFromSpikes = false;
+                rigidBody.simulated = true;
             }
         }
 
@@ -120,6 +121,7 @@ public class Enemy_Ctrl : MonoBehaviour
         {
             anim.SetBool("IsDeath", true);
             collisionFromSpikes = true;                  // booleano che attiva il counter per disattivare l'Enemy dopo l'animazione di death
+            rigidBody.simulated = false;
         }
     }
 
