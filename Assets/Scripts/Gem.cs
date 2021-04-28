@@ -110,6 +110,7 @@ public class Gem : MonoBehaviour, IPointerClickHandler
     {
         draggable = false;
         transform.position = startPos;
+        Cursor.visible = true;
     }
 
     private void Update()
