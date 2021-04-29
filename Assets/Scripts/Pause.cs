@@ -6,6 +6,7 @@ using TMPro;
 public class Pause : MonoBehaviour
 {
     public GameObject Text;
+    public GameObject Game;
     public void PauseGame()
     {
         if (Time.timeScale==1)
@@ -19,6 +20,11 @@ public class Pause : MonoBehaviour
             Text.SetActive(false);
             
         }
+    }
+
+    public void PlayGame()
+    {
+        Game.SetActive(true);
     }
 
     
