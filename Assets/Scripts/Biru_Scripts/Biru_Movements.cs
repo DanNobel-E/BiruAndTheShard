@@ -147,7 +147,8 @@ public class Biru_Movements : MonoBehaviour
         rb.velocity += Vector2.up * jumpForce;
         ps.Play();
         jumpSound.Play();
-        camAnimator.SetTrigger("shake");
+        //camAnimator.SetTrigger("shake"); //serve ad attivare lo shake
+
     }
 
     public bool CheckIfGrounded()
