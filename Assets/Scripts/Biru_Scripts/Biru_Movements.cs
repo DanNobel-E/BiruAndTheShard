@@ -1,6 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.Audio;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -14,6 +12,7 @@ public class Biru_Movements : MonoBehaviour
     SpriteRenderer sr;
     public ParticleSystem ps;
     Animator camAnimator;
+    AudioSource jumpSound;
 
     [Header("DebugVariables")]
     public LayerMask GroundLayer;
@@ -59,6 +58,7 @@ public class Biru_Movements : MonoBehaviour
         rb=GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
         camAnimator = Camera.main.GetComponent<Animator>();
+        jumpSound = GetComponent<AudioSource>();
       
     }
 
@@ -146,6 +146,7 @@ public class Biru_Movements : MonoBehaviour
     {
         rb.velocity += Vector2.up * jumpForce;
         ps.Play();
+        jumpSound.Play();
         camAnimator.SetTrigger("shake");
     }
 
