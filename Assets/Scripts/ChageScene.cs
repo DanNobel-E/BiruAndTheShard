@@ -8,4 +8,10 @@ public class ChageScene : MonoBehaviour
     {
         SceneManager.LoadScene(index);
     }
+    
+    public void Quit()
+    {
+        UnityEditor.EditorApplication.isPlaying = false;
+        Application.Quit();
+    }
 }
