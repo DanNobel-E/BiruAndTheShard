@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Enemy_Ctrl : MonoBehaviour
@@ -25,6 +26,8 @@ public class Enemy_Ctrl : MonoBehaviour
     float counterForAnimHit = 0;
     float counterForActive = 0;
     float timeForActive; /*= Random.Range(0, 4);*/
+
+    public Tilemap notErasableTilemap;
 
     void Start()
     {
@@ -54,6 +57,28 @@ public class Enemy_Ctrl : MonoBehaviour
             //if(counterForActive >= timeForActive)
                 rigidBody.velocity = transform.right * Speed * Time.deltaTime;
         }
+    }
+
+    public void ManageNotErasable()
+    {
+        if (notErasableTilemap.isActiveAndEnabled)
+        {
+            Vector3Int ePosNE = notErasableTilemap.WorldToCell(transform.position);
+            if (notErasableTilemap.GetTile(ePosNE) != null)
+            {
+
+                KillEnemy();
+            }
+
+
+        }
+    }
+
+    public void KillEnemy()
+    {
+        anim.SetBool("IsDeath", true);
+        collisionFromSpikes = true;                  // booleano che attiva il counter per disattivare l'Enemy dopo l'animazione di death
+        rigidBody.simulated = false;
     }
     void Update()
     {
@@ -87,6 +112,8 @@ public class Enemy_Ctrl : MonoBehaviour
                 collisionHit = false;
             }
         }
+
+        ManageNotErasable();
     }
     void RaycastEnemy()
     {
@@ -119,9 +146,7 @@ public class Enemy_Ctrl : MonoBehaviour
     {
         if (col.CompareTag("Border") || col.CompareTag("Spikes_Trap"))
         {
-            anim.SetBool("IsDeath", true);
-            collisionFromSpikes = true;                  // booleano che attiva il counter per disattivare l'Enemy dopo l'animazione di death
-            rigidBody.simulated = false;
+            KillEnemy();
         }
     }
 
