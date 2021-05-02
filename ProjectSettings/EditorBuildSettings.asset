@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/Francesco_scene.unity
+    guid: 7e80de9fb95d7834ba9ffbef6f4796b0
+  - enabled: 1
     path: Assets/Scenes/Simone_Scene 1.unity
     guid: 265f30cae395a7849b41457c4b8f013a
   m_configObjects: {}

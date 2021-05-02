@@ -8,7 +8,7 @@ public class CursorTests : MonoBehaviour
 
     public void Start()
     {
-        Cursor.SetCursor(t, Vector2.zero, CursorMode.ForceSoftware);
+        Cursor.SetCursor(t, Vector2.zero, CursorMode.Auto);
         
         
     }
